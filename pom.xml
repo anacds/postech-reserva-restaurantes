@@ -8,11 +8,11 @@
 		<version>3.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>postech-reserva-restaurante</artifactId>
+	<groupId>com.fiap</groupId>
+	<artifactId>postech-reserva-restaurantes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>postech-tech-challenge-3</name>
-	<description>Tech Challenge 3 - Reserva e Avaliação de Restaurantes</description>
+	<name>postech-reserva-restaurantes</name>
+	<description>Tech Challenge 3 da Pos Tech FIAP</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -34,17 +34,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

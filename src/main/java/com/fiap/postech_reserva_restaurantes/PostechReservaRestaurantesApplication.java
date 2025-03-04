@@ -1,4 +1,4 @@
-package com.example.postech_reserva_restaurantes;
+package com.fiap.postech_reserva_restaurantes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
