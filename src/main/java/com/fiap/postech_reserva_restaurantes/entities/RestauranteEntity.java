@@ -15,4 +15,5 @@ public class RestauranteEntity {
     private List<String> tipoCozinha;
     private List<HorarioFuncionamentoEntity> horariosFuncionamento;
     private int capacidade;
+
 }
