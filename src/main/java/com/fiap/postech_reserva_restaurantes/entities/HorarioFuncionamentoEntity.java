@@ -1,10 +1,12 @@
 package com.fiap.postech_reserva_restaurantes.entities;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
 public class HorarioFuncionamentoEntity {
-    private String diaSemana;
-    private String horarioAbertura;
-    private String horarioFechamento;
+    private DiaDaSemana diaSemana;
+    private LocalDateTime horarioAbertura;
+    private LocalDateTime horarioFechamento;
 }
