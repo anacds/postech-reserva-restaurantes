@@ -11,6 +11,7 @@ public class RestauranteEntity {
     private EnderecoEntity endereco;
     private List<String> tipoCozinha;
     private List<HorarioFuncionamentoEntity> horariosFuncionamento;
+    private List<MesaEntity> mesas;
     private int capacidade;
 
     public RestauranteEntity(String id,
@@ -19,6 +20,7 @@ public class RestauranteEntity {
                              EnderecoEntity endereco,
                              List<String> tipoCozinha,
                              List<HorarioFuncionamentoEntity> horariosFuncionamento,
+                             List<MesaEntity> mesas,
                              int capacidade) {
 
         validar(nome, cnpj, endereco, tipoCozinha, capacidade);
@@ -29,6 +31,7 @@ public class RestauranteEntity {
         this.endereco = endereco;
         this.tipoCozinha = tipoCozinha;
         this.horariosFuncionamento = horariosFuncionamento;
+        this.mesas = mesas;
         this.capacidade = capacidade;
     }
 
@@ -56,11 +59,15 @@ public class RestauranteEntity {
         return horariosFuncionamento;
     }
 
+    public List<MesaEntity> getMesas() {
+        return mesas;
+    }
+
     public int getCapacidade() {
         return capacidade;
     }
 
-    private void validar(String nome, CNPJEntity cnpj, EnderecoEntity endereco, List<String> tipoCozinha, int capacidade) {
+    private void validar(String nome, CNPJEntity cnpj, EnderecoEntity endereco, List<String> tipoCozinha, List<MesaEntity> mesas, int capacidade) {
         if (Objects.isNull(nome)) {
             throw new IllegalArgumentException("O nome é obrigatório");
         }
@@ -72,6 +79,9 @@ public class RestauranteEntity {
         }
         if (Objects.isNull(tipoCozinha) || tipoCozinha.isEmpty()) {
             throw new IllegalArgumentException("O tipo de cozinha é obrigatório");
+        }
+        if (Objects.isNull(mesas) || mesas.isEmpty()) {
+            throw new IllegalArgumentException("O restaurante deve ter ao menos uma mesa");
         }
         if (Objects.isNull(capacidade) || capacidade <= 0) {
             throw new IllegalArgumentException("É obrigatório informar uma capacidade maior que zero.");
