@@ -7,6 +7,8 @@ import java.util.Objects;
 public class RestauranteEntity {
     private String id;
     private String nome;
+    private NotaEntity nota;
+    private List<ComentarioEntity> comentarios;
     private CNPJEntity cnpj;
     private EnderecoEntity endereco;
     private List<String> tipoCozinha;
@@ -16,6 +18,8 @@ public class RestauranteEntity {
 
     public RestauranteEntity(String id,
                              String nome,
+                             NotaEntity nota,
+                             List<ComentarioEntity> comentarios,
                              CNPJEntity cnpj,
                              EnderecoEntity endereco,
                              List<String> tipoCozinha,
@@ -27,6 +31,8 @@ public class RestauranteEntity {
 
         this.id = id;
         this.nome = nome;
+        this.nota = nota;
+        this.comentarios = comentarios;
         this.cnpj = cnpj;
         this.endereco = endereco;
         this.tipoCozinha = tipoCozinha;
@@ -41,6 +47,14 @@ public class RestauranteEntity {
 
     public String getNome() {
         return nome;
+    }
+
+    public NotaEntity getNota() {
+        return nota;
+    }
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
     }
 
     public CNPJEntity getCnpj() {
