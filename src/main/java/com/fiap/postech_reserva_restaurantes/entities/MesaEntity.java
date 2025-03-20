@@ -6,52 +6,37 @@ import java.util.Objects;
 public class MesaEntity {
 	
 	public final Integer numero, capacidade;
-	public final boolean disponibilidade;
 	public final RestauranteEntity restaurante;
-	public final List<ReservaEntity> reservas;
+	public final List<MesaIndisponibilidadeEntity> indisponivel;
 	
-	public MesaEntity(Integer numero, Integer capacidade, boolean disponibilidade,
-			RestauranteEntity restaurante, List<ReservaEntity> reservas) throws IllegalArgumentException{
+	public MesaEntity(Integer numero, Integer capacidade, RestauranteEntity restaurante, List<MesaIndisponibilidadeEntity> indisponivel) 
+			throws IllegalArgumentException{
 		
 		validaNumero(capacidade);
 		validaNumero(numero);
 		
 		this.numero = numero;
 		this.capacidade = capacidade;
-		this.disponibilidade = disponibilidade;
 		this.restaurante = restaurante;
-		this.reservas = reservas;
+		this.indisponivel = indisponivel;
 	}
-
 
 	public Integer getNumero() {
 		return numero;
 	}
 
-
 	public Integer getCapacidade() {
 		return capacidade;
 	}
 
-
-	public boolean isDisponibilidade() {
-		return disponibilidade;
-	}
-	
 	public RestauranteEntity getRestaurante() {
 		return restaurante;
 	}
-
-
-	public List<ReservaEntity> getReservas() {
-		return reservas;
+	
+	public List<MesaIndisponibilidadeEntity> getIndisponivel() {
+		return indisponivel;
 	}
 
-	public void addReserva(ReservaEntity reserva) {
-		reservas.add(reserva);
-	}
-	
-	
 	private void validaNumero(Integer valor) throws IllegalArgumentException {
 		if (Objects.isNull(valor)) {
 			throw new IllegalArgumentException("Dados inválidos");
@@ -60,7 +45,6 @@ public class MesaEntity {
 			throw new IllegalArgumentException("Dados inválidos");
 		}
 	}
-	
 	
 	
 }

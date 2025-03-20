@@ -2,19 +2,39 @@ package com.fiap.postech_reserva_restaurantes.usecases;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.fiap.postech_reserva_restaurantes.dto.ReservaDTO;
 import com.fiap.postech_reserva_restaurantes.entities.HorarioFuncionamentoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
+import com.fiap.postech_reserva_restaurantes.entities.UsuarioEntity;
 
+@Service
 public class ReservaMesaUseCase {
 
-	public static ReservaEntity reservarMesa(MesaEntity mesa, RestauranteEntity restaurante, LocalDateTime dataHoraInicio,
-			LocalDateTime dataHoraFim) throws Exception {
+	@Autowired
+	private static ObterMesaPorIdUseCase obterMesaPorIdUseCase;
+	
+	public static ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
 		
-		ReservaEntity reserva = new ReservaEntity(mesa, restaurante, dataHoraInicio, dataHoraFim);
-		validarHorario(restaurante, reserva);
-		return reserva;
+		MesaEntity mesa = obterMesaPorIdUseCase.obter(reservaDTO.idMesa());
+		
+		//fazer o mesmo com usuario 
+		
+		//fazer o mesmo com restaurante
+	
+//		ReservaEntity reserva = new ReservaEntity(mesa, usuario, restaurante, dataHoraInicio, dataHoraFim, status, observacao, qtdPessoas);
+		
+		try {
+//			validarHorario(restaurante, reserva);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+//		return reserva;
+		return null;
 	}
 	
 	private static void validarHorario(RestauranteEntity restaurante, ReservaEntity reserva) throws Exception {
