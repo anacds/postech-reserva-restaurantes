@@ -15,6 +15,7 @@ public class CNPJEntity {
         return valor;
     }
 
+
     private void validar(String valor) {
         if (valor == null || valor.isBlank()) {
             throw new IllegalArgumentException("O CNPJ é obrigatório");

@@ -18,12 +18,12 @@ public class HorarioFuncionamentoEntity {
         return diaSemana;
     }
 
-    public String getHorarioAbertura() {
-        return horarioAbertura;
-    }
-
     public String getHorarioFechamento() {
         return horarioFechamento;
+    }
+
+    public String getHorarioAbertura() {
+        return horarioAbertura;
     }
 
     private void validar(String diaSemana, String horarioAbertura, String horarioFechamento) {
