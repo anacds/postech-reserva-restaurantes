@@ -66,6 +66,14 @@ public class ReservaEntity {
 		return dia;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public MesaEntity getMesa() {
 		return mesa;
 	}

@@ -1,24 +1,20 @@
 package com.fiap.postech_reserva_restaurantes.interfaces;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
-import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
-import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
-import com.fiap.postech_reserva_restaurantes.entities.UsuarioEntity;
 
 public interface IReservaGateway {
 	
-	public ReservaEntity criarReserva(ReservaEntity reserva);
+	public void criarReserva(ReservaEntity reserva);
 	
-	public List<ReservaEntity> procurarReservasPorUsuario(ReservaEntity reserva);
+	public List<ReservaEntity> buscarReservasPorUsuario(Long idUsuario);
 	
-	public List<ReservaEntity> procurarReservasPorRestaurante(ReservaEntity reserva);
+	public List<ReservaEntity> buscarReservasPorRestaurante(Long idRestaurante);
 	
-	public void atualizar(ReservaEntity reserva);
+	public ReservaEntity buscaReservaPorId(Long idReserva);
 	
-	public void cancelar(ReservaEntity reserva);
+	public void alterarReserva(ReservaEntity reserva);
 	
+	public void excluirReserva(Long idReserva);
 	
 }

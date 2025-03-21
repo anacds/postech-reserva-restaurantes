@@ -1,15 +1,22 @@
 package com.fiap.postech_reserva_restaurantes.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class MesaEntity {
 	
+	@Id
+	private Long id;
 	public final Integer numero, capacidade;
 	public final RestauranteEntity restaurante;
-	public final List<MesaIndisponibilidadeEntity> indisponivel;
+	public final List<HorarioReservaMesaEntity> indisponivel;
 	
-	public MesaEntity(Integer numero, Integer capacidade, RestauranteEntity restaurante, List<MesaIndisponibilidadeEntity> indisponivel) 
+	public MesaEntity(Integer numero, Integer capacidade, RestauranteEntity restaurante, List<HorarioReservaMesaEntity> indisponivel) 
 			throws IllegalArgumentException{
 		
 		validaNumero(capacidade);
@@ -18,7 +25,17 @@ public class MesaEntity {
 		this.numero = numero;
 		this.capacidade = capacidade;
 		this.restaurante = restaurante;
-		this.indisponivel = indisponivel;
+		
+		if (Objects.isNull(indisponivel)) {
+			this.indisponivel = new ArrayList<HorarioReservaMesaEntity>();
+		}else {
+			this.indisponivel = indisponivel;
+		}
+		
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public Integer getNumero() {
@@ -33,7 +50,7 @@ public class MesaEntity {
 		return restaurante;
 	}
 	
-	public List<MesaIndisponibilidadeEntity> getIndisponivel() {
+	public List<HorarioReservaMesaEntity> getIndisponivel() {
 		return indisponivel;
 	}
 

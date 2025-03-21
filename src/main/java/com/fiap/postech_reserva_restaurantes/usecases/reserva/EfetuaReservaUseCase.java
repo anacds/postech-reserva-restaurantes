@@ -1,4 +1,4 @@
-package com.fiap.postech_reserva_restaurantes.usecases;
+package com.fiap.postech_reserva_restaurantes.usecases.reserva;
 
 import java.time.LocalDateTime;
 
@@ -10,16 +10,17 @@ import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
 import com.fiap.postech_reserva_restaurantes.entities.UsuarioEntity;
+import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesaPorIdUseCase;
 
 @Service
-public class ReservaMesaUseCase {
+public class EfetuaReservaUseCase {
 
 	@Autowired
-	private static ObterMesaPorIdUseCase obterMesaPorIdUseCase;
+	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
 	
-	public static ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
+	public ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
 		
-		MesaEntity mesa = obterMesaPorIdUseCase.obter(reservaDTO.idMesa());
+		MesaEntity mesa = buscarMesaPorIdUseCase.buscar(reservaDTO.idMesa());
 		
 		//fazer o mesmo com usuario 
 		
@@ -28,7 +29,7 @@ public class ReservaMesaUseCase {
 //		ReservaEntity reserva = new ReservaEntity(mesa, usuario, restaurante, dataHoraInicio, dataHoraFim, status, observacao, qtdPessoas);
 		
 		try {
-//			validarHorario(restaurante, reserva);
+//			validarHorario(restaurante, reser va);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
