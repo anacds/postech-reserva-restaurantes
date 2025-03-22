@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DelecaoRestauranteUseCase {
 
-    @Autowired
     public static RestauranteGateway restauranteGateway;
 
     public static void deletarRestaurante(String id) {
@@ -22,5 +21,6 @@ public class DelecaoRestauranteUseCase {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar o restaurante com ID " + id, e);
         }
+
     }
 }

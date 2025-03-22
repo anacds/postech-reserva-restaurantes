@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class RestauranteGateway implements IRestauranteGateway {
 
+    private final MongoTemplate mongoTemplate;
+
     @Autowired
     public RestauranteRepository restauranteRepository;
-
-    private final MongoTemplate mongoTemplate;
 
     public RestauranteGateway(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;

@@ -6,7 +6,7 @@ import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
 
 import java.util.List;
 
-public interface RestauranteRepository extends MongoRepository<RestauranteEntity, Long>{
+public interface RestauranteRepository extends MongoRepository<RestauranteEntity, String>{
 
     List<RestauranteEntity> findRestauranteEntitiesByNomeContainingIgnoreCase(String nome);
 

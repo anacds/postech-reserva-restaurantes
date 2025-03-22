@@ -5,7 +5,6 @@ import com.fiap.postech_reserva_restaurantes.entities.CNPJEntity;
 import com.fiap.postech_reserva_restaurantes.entities.EnderecoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.HorarioFuncionamentoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.List;
 @Service
 public class CadastroRestauranteUseCase {
 
-    @Autowired
     public static RestauranteEntity cadastrarRestaurante(RestauranteDTO restauranteDTO) {
         if (restauranteDTO == null) {
             throw new IllegalArgumentException("Dados do restaurante não podem ser nulos.");
@@ -23,12 +21,13 @@ public class CadastroRestauranteUseCase {
         CNPJEntity cnpj = new CNPJEntity(restauranteDTO.cnpj());
 
         EnderecoEntity endereco = new EnderecoEntity(
-                restauranteDTO.endereco().logradouro(),
+                restauranteDTO.endereco().rua(),
                 restauranteDTO.endereco().numero(),
                 restauranteDTO.endereco().bairro(),
                 restauranteDTO.endereco().cidade(),
                 restauranteDTO.endereco().estado(),
-                restauranteDTO.endereco().cep()
+                restauranteDTO.endereco().cep(),
+                restauranteDTO.endereco().complemento()
         );
 
         List<HorarioFuncionamentoEntity> horariosFuncionamento = new ArrayList<>();

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document
+@Document(collection = "restaurantes")
 @Setter
 public class RestauranteEntity {
 
@@ -27,8 +27,8 @@ public class RestauranteEntity {
         super();
         this.nome = nome;
         this.cnpj = cnpj;
-        this.nota = nota; // getNota?
-        this.comentarios = comentarios; //getComentarios?
+        this.nota = nota;
+        this.comentarios = comentarios;
         this.endereco = endereco;
         this.tipoCozinha = tipoCozinha;
         this.horariosFuncionamento = horariosFuncionamento;
