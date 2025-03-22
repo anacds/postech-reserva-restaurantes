@@ -1,4 +1,4 @@
-package com.fiap.postech_reserva_restaurantes.controllers;
+package com.fiap.postech_reserva_restaurantes.controller;
 
 import com.fiap.postech_reserva_restaurantes.dto.FeedbackRequest;
 import com.fiap.postech_reserva_restaurantes.entities.FeedbackEntity;
