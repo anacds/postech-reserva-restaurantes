@@ -16,16 +16,16 @@ public class AlteraMesaUseCase {
 	
 	public static MesaEntity alterarMesa(MesaDTO mesaDTO) {
 		
-		try {
-			RestauranteEntity restaurante = new RestauranteEntity();
-			
-			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante, mesaDTO.reservas());
-			return mesaGateway.alterarMesa(mesa);
-			
-		} catch (Exception e) {
-			System.out.println("Mesa não foi alterada");
+//		try {
+//			RestauranteEntity restaurante = new RestauranteEntity();
+//			
+//			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante, mesaDTO.reservas());
+//			return mesaGateway.alterarMesa(mesa);
+//			
+//		} catch (Exception e) {
+//			System.out.println("Mesa não foi alterada");
 			return null;
-		}
+//		}
 	}
 
 }

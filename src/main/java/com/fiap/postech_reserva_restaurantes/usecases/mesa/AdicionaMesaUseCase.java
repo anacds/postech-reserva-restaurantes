@@ -17,16 +17,16 @@ public class AdicionaMesaUseCase {
 	public static MesaEntity adicionarMesa(MesaDTO mesaDTO) {
 		
 //		RestauranteEntity restaurante = BuscarRestaurantePorId(mesaDTO.idRestaurante());
-		RestauranteEntity restaurante = new RestauranteEntity();
-		
-		MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante, null);
-		
-		try {
-			return mesaGateway.criarMesa(mesa);
-		} catch (Exception e) {
-			System.out.println("Não foi possível criar uma mesa");
+//		RestauranteEntity restaurante = new RestauranteEntity();
+//		
+//		MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante, null);
+//		
+//		try {
+//			return mesaGateway.criarMesa(mesa);
+//		} catch (Exception e) {
+//			System.out.println("Não foi possível criar uma mesa");
 			return null;
-		}
+//		}
 		
 	}
 }
