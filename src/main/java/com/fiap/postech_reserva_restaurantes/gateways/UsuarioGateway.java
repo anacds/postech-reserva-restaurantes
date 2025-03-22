@@ -6,6 +6,7 @@ import com.fiap.postech_reserva_restaurantes.interfaces.IUsuarioGateway;
 import com.fiap.postech_reserva_restaurantes.valueobjects.Cpf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,13 +26,18 @@ public class UsuarioGateway implements IUsuarioGateway {
     }
 
     @Override
+    public UsuarioEntity atualizar(UsuarioEntity usuario) {
+        return usuarioRepository.save(usuario); // `save` do JPA já trata create/update
+    }
+
+    @Override
     public Optional<UsuarioEntity> buscarPorId(String id) {
         return usuarioRepository.findById(id);
     }
 
     @Override
     public Optional<UsuarioEntity> buscarPorCpf(Cpf cpf) {
-        return usuarioRepository.findByCpf(cpf);
+        return usuarioRepository.findByCpf(cpf.getValue());
     }
 
     @Override
@@ -40,7 +46,9 @@ public class UsuarioGateway implements IUsuarioGateway {
     }
 
     @Override
-    public void remover(String id) {
+    public boolean remover(String id) {
+        if (!usuarioRepository.existsById(id)) return false;
         usuarioRepository.deleteById(id);
+        return true;
     }
 }

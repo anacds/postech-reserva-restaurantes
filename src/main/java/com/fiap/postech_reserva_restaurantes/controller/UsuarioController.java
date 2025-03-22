@@ -9,14 +9,14 @@ import com.fiap.postech_reserva_restaurantes.usecases.usuario.CriarUsuarioUseCas
 import com.fiap.postech_reserva_restaurantes.usecases.usuario.RemoverUsuarioUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
@@ -26,32 +26,26 @@ public class UsuarioController {
     private final RemoverUsuarioUseCase removerUsuarioUseCase;
     private final ListarUsuariosUseCase listarUsuariosUseCase;
 
-
     public UsuarioController(
         CriarUsuarioUseCase criarUsuarioUseCase,
         BuscarUsuarioUseCase buscarUsuarioUseCase,
         AtualizarUsuarioUseCase atualizarUsuarioUseCase,
         RemoverUsuarioUseCase removerUsuarioUseCase,
-        ListarUsuariosUseCase listarUsuariosUseCase) {
-    this.criarUsuarioUseCase = criarUsuarioUseCase;
-    this.buscarUsuarioUseCase = buscarUsuarioUseCase;
-    this.atualizarUsuarioUseCase = atualizarUsuarioUseCase;
-    this.removerUsuarioUseCase = removerUsuarioUseCase;
-    this.listarUsuariosUseCase = listarUsuariosUseCase;
-}
-
+        ListarUsuariosUseCase listarUsuariosUseCase
+    ) {
+        this.criarUsuarioUseCase = criarUsuarioUseCase;
+        this.buscarUsuarioUseCase = buscarUsuarioUseCase;
+        this.atualizarUsuarioUseCase = atualizarUsuarioUseCase;
+        this.removerUsuarioUseCase = removerUsuarioUseCase;
+        this.listarUsuariosUseCase = listarUsuariosUseCase;
+    }
 
     @PostMapping
     @Transactional
     public ResponseEntity<UsuarioEntity> criarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-        UsuarioEntity usuario = criarUsuarioUseCase.executar(
-                usuarioDTO.nome(),
-                usuarioDTO.cpf(),
-                usuarioDTO.dataNascimento(),
-                usuarioDTO.telefone(),
-                usuarioDTO.endereco()
-        );
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+        UsuarioEntity usuario = usuarioDTO.toEntity(UUID.randomUUID().toString());
+        UsuarioEntity salvo = criarUsuarioUseCase.executar(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
     @GetMapping
@@ -77,13 +71,13 @@ public class UsuarioController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<UsuarioEntity> atualizarUsuario(@PathVariable String id, @RequestBody UsuarioDTO usuarioDTO) {
-        Optional<UsuarioEntity> atualizado = atualizarUsuarioUseCase.executar(
-                id,
-                usuarioDTO.nome(),
-                usuarioDTO.cpf(),
-                usuarioDTO.dataNascimento(),
-                usuarioDTO.telefone(),
-                usuarioDTO.endereco()
+        var atualizado = atualizarUsuarioUseCase.executar(
+            id,
+            usuarioDTO.nome(),
+            usuarioDTO.cpf().toValueObject(),
+            usuarioDTO.dataNascimento(),
+            usuarioDTO.telefone(),
+            usuarioDTO.endereco().toEntity()
         );
         return atualizado.map(ResponseEntity::ok)
                          .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
