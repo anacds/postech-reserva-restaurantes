@@ -1,11 +1,13 @@
 package com.fiap.postech_reserva_restaurantes.entities;
 
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Document
+@Setter
 public class RestauranteEntity {
 
     @Id
@@ -25,8 +27,8 @@ public class RestauranteEntity {
         super();
         this.nome = nome;
         this.cnpj = cnpj;
-        this.nota = nota;
-        this.comentarios = comentarios;
+        this.nota = nota; // getNota?
+        this.comentarios = comentarios; //getComentarios?
         this.endereco = endereco;
         this.tipoCozinha = tipoCozinha;
         this.horariosFuncionamento = horariosFuncionamento;

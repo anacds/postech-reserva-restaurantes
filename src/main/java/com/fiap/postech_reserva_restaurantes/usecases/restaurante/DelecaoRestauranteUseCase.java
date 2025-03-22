@@ -15,7 +15,7 @@ public class DelecaoRestauranteUseCase {
         try {
             RestauranteEntity restaurante = restauranteGateway.buscarRestaurantePorId(id);
             if (restaurante != null) {
-                restauranteGateway.deletarRestaurante(restaurante);
+                restauranteGateway.deletarRestaurante(id);
             } else {
                 throw new IllegalArgumentException("Restaurante com ID " + id + " não foi encontrado.");
             }
