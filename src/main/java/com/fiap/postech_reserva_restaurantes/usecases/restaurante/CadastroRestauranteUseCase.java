@@ -5,7 +5,6 @@ import com.fiap.postech_reserva_restaurantes.entities.CNPJEntity;
 import com.fiap.postech_reserva_restaurantes.entities.EnderecoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.HorarioFuncionamentoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
-import com.fiap.postech_reserva_restaurantes.external.repositories.RestauranteRepository;
 import com.fiap.postech_reserva_restaurantes.gateways.RestauranteGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,8 +52,8 @@ public class CadastroRestauranteUseCase {
                 restauranteDTO.nome(),
                 cnpj,
                 endereco,
-                null,  // ajustar
-                null,  // ajustar
+                null,  // ajustar nota
+                null,  // ajustar comentarios
                 restauranteDTO.tipoCozinha(),
                 horariosFuncionamento,
                 restauranteDTO.capacidade()
