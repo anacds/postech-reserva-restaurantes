@@ -45,7 +45,7 @@ public class RestauranteGateway implements IRestauranteGateway {
 
     @Override
     public List<RestauranteEntity> buscarRestaurantesPorBairro(String bairro){
-        return restauranteRepository.findRestauranteEntitiesByEndereco_Bairro(bairro);
+        return restauranteRepository.findRestauranteEntitiesByEnderecoBairroContainingIgnoreCase(bairro);
     }
 
     @Override

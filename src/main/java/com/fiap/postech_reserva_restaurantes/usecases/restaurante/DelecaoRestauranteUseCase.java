@@ -10,17 +10,13 @@ import java.util.Optional;
 @Service
 public class DelecaoRestauranteUseCase {
 
-    public static RestauranteGateway restauranteGateway;
+    @Autowired
+    public RestauranteGateway restauranteGateway;
 
-    public static void deletarRestaurante(String id) {
+    public void deletarRestaurante(String id) {
         try {
-            Optional<RestauranteEntity> restaurante = restauranteGateway.buscarRestaurantePorId(id);
-            if (restaurante != null) {
                 restauranteGateway.deletarRestaurante(id);
-            } else {
-                throw new IllegalArgumentException("Restaurante com ID " + id + " não foi encontrado.");
-            }
-        } catch (Exception e) {
+            } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar o restaurante com ID " + id, e);
         }
 

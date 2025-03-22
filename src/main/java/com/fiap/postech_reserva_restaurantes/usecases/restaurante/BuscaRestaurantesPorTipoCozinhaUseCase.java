@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class BuscaRestaurantesPorTipoCozinhaUseCase {
     @Autowired
-    public static RestauranteGateway restauranteGateway;
+    public RestauranteGateway restauranteGateway;
 
-    public static List<RestauranteEntity> buscarRestaurantesPorTipoCozinha(String tipoCozinha) {
+    public List<RestauranteEntity> buscarRestaurantesPorTipoCozinha(String tipoCozinha) {
         try {
             return restauranteGateway.buscarRestaurantesPorTipoCozinha(tipoCozinha);
         } catch (Exception e) {

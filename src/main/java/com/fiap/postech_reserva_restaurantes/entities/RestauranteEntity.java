@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Objects;
 
 @Document(collection = "restaurantes")
 @Setter
@@ -25,6 +26,7 @@ public class RestauranteEntity {
                              NotaEntity nota, List<ComentarioEntity> comentarios,
                              List<String> tipoCozinha, List<HorarioFuncionamentoEntity> horariosFuncionamento, int capacidade) {
         super();
+        validar(cnpj, nome, tipoCozinha, horariosFuncionamento, capacidade);
         this.nome = nome;
         this.cnpj = cnpj;
         this.nota = nota;
@@ -69,5 +71,31 @@ public class RestauranteEntity {
 
     public int getCapacidade() {
         return capacidade;
+    }
+
+    private void validar(CNPJEntity cnpj,
+                         String nome,
+                         List<String> tipoCozinha,
+                         List<HorarioFuncionamentoEntity> horariosFuncionamento,
+                         int capacidade){
+        if (Objects.isNull(cnpj) || Objects.isNull(cnpj.getValor()) || cnpj.getValor().isBlank()) {
+            throw new IllegalArgumentException("O CNPJ do restaurante é obrigatório.");
+        }
+
+        if (Objects.isNull(nome) || nome.isBlank()) {
+            throw new IllegalArgumentException("O nome do restaurante é obrigatório.");
+        }
+
+        if (Objects.isNull(tipoCozinha) || tipoCozinha.isEmpty()) {
+            throw new IllegalArgumentException("O tipo de cozinha é obrigatório e deve conter pelo menos um valor.");
+        }
+
+        if (Objects.isNull(horariosFuncionamento) || horariosFuncionamento.isEmpty()) {
+            throw new IllegalArgumentException("Os horários de funcionamento são obrigatórios e devem conter pelo menos um horário.");
+        }
+
+        if (capacidade <= 0) {
+            throw new IllegalArgumentException("A capacidade do restaurante deve ser um valor positivo.");
+        }
     }
 }

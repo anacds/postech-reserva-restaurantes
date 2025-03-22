@@ -16,9 +16,9 @@ import java.util.List;
 public class AtualizacaoRestauranteUseCase {
 
     @Autowired
-    public static RestauranteGateway restauranteGateway;
+    public RestauranteGateway restauranteGateway;
 
-    public static RestauranteEntity atualizarRestaurante(RestauranteDTO restauranteDTO) {
+    public RestauranteEntity atualizarRestaurante(RestauranteDTO restauranteDTO) {
         return null;
     }
 

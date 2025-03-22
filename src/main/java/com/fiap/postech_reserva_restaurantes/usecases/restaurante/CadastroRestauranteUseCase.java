@@ -16,9 +16,9 @@ import java.util.List;
 public class CadastroRestauranteUseCase {
 
     @Autowired
-    public static RestauranteGateway restauranteGateway;
+    public RestauranteGateway restauranteGateway;
 
-    public static RestauranteEntity cadastrarRestaurante(RestauranteDTO restauranteDTO) {
+    public RestauranteEntity cadastrarRestaurante(RestauranteDTO restauranteDTO) {
         if (restauranteDTO == null) {
             throw new IllegalArgumentException("Dados do restaurante não podem ser nulos.");
         }
@@ -59,11 +59,11 @@ public class CadastroRestauranteUseCase {
                 restauranteDTO.capacidade()
         );
 
-        //try {
-		//	validarDadosRestaurante(restaurante);
-        //} catch (Exception e) {
-        //    e.printStackTrace();
-        //}
+        try {
+			validarDadosRestaurante(restaurante);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return restauranteGateway.cadastrarRestaurante(restaurante);
     }

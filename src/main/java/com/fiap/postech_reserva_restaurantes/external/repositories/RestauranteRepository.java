@@ -14,5 +14,5 @@ public interface RestauranteRepository extends MongoRepository<RestauranteEntity
 
     void deleteRestauranteEntityById(String id);
 
-    List<RestauranteEntity> findRestauranteEntitiesByEndereco_Bairro(String enderecoBairro);
+    List<RestauranteEntity> findRestauranteEntitiesByEnderecoBairroContainingIgnoreCase(String bairro);
 }

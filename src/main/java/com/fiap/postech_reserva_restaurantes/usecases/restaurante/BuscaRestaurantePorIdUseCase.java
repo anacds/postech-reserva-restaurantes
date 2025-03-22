@@ -11,9 +11,9 @@ import java.util.Optional;
 public class BuscaRestaurantePorIdUseCase {
 
     @Autowired
-    public static RestauranteGateway restauranteGateway;
+    public RestauranteGateway restauranteGateway;
 
-    public static Optional<RestauranteEntity> buscarRestaurantePorId(String id) {
+    public Optional<RestauranteEntity> buscarRestaurantePorId(String id) {
         try {
             return restauranteGateway.buscarRestaurantePorId(id);
         } catch (Exception e) {
