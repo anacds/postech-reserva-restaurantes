@@ -1,5 +1,6 @@
 package com.fiap.postech_reserva_restaurantes.gateways;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -26,17 +27,17 @@ public class ReservaGateway implements IReservaGateway{
 		reservaRepository.save(reserva);
 	}
 
-	public List<ReservaEntity> buscarReservasPorUsuario(Long idUsuario) {
+	public List<ReservaEntity> buscarReservasPorUsuario(String idUsuario) {
 		Query query = new Query(Criteria.where("usuario_id").is(idUsuario));
 		return mongoTemplate.find(query, ReservaEntity.class);
 	}
 
-	public List<ReservaEntity> buscarReservasPorRestaurante(Long idRestaurante) {
+	public List<ReservaEntity> buscarReservasPorRestaurante(String idRestaurante) {
 		Query query = new Query(Criteria.where("restaurante_id").is(idRestaurante));
 		return mongoTemplate.find(query, ReservaEntity.class);
 	}
 
-	public ReservaEntity buscaReservaPorId(Long idReserva) {
+	public ReservaEntity buscaReservaPorId(String idReserva) {
 		return reservaRepository.findById(idReserva).orElseThrow(() -> new IllegalArgumentException("Reserva não cadastrada"));
 	}
 
@@ -44,8 +45,9 @@ public class ReservaGateway implements IReservaGateway{
 		reservaRepository.save(reserva);
 	}
 
-	public void excluirReserva(Long idReserva) {
+	public void excluirReserva(String idReserva) {
 		reservaRepository.deleteById(idReserva);
 	}
+
 
 }

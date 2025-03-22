@@ -23,43 +23,31 @@ import com.fiap.postech_reserva_restaurantes.usecases.mesa.DeletaRegistroMesaUse
 @Controller
 @RequestMapping("mesa")
 public class MesaController {
-
-	@Autowired
-	private AdicionaMesaUseCase adicionaMesaUseCase;
-	
-	@Autowired
-	private AlteraMesaUseCase alteraMesaUseCase;
-	
-	@Autowired
-	private DeletaRegistroMesaUseCase deletaMesaUseCase;
-	
-	@Autowired
-	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
 	
 	@PostMapping
 	@Transactional
 	public ResponseEntity<MesaEntity> adicionaMesaUseCase(MesaDTO mesaDTO){
-		MesaEntity mesa = adicionaMesaUseCase.adicionarMesa(mesaDTO);
+		MesaEntity mesa = AdicionaMesaUseCase.adicionarMesa(mesaDTO);
 		return new ResponseEntity<>(mesa, HttpStatus.CREATED);
 	}
 	
 	@PutMapping
 	@Transactional
 	public ResponseEntity<MesaEntity> alteraMesaUseCase(MesaDTO mesaDTO){
-		MesaEntity mesa = alteraMesaUseCase.alterarMesa(mesaDTO);
+		MesaEntity mesa = AlteraMesaUseCase.alterarMesa(mesaDTO);
 		return new ResponseEntity<>(mesa, HttpStatus.OK);
 	}
 	
 	@PutMapping
 	@Transactional
 	public ResponseEntity deletaMesaUseCase(MesaDTO mesaDTO){
-		deletaMesaUseCase.deletarMesa(mesaDTO);
+		DeletaRegistroMesaUseCase.deletarMesa(mesaDTO);
 		return ResponseEntity.ok().build();
 	}
 	
 	@GetMapping
-	 public ResponseEntity<MesaEntity> buscarReservaPorUsuario(@RequestParam("id") Long id, UriComponentsBuilder uriBuilder){
-		MesaEntity mesa = buscarMesaPorIdUseCase.buscar(id);
+	 public ResponseEntity<MesaEntity> buscarReservaPorUsuario(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
+		MesaEntity mesa = BuscarMesaPorIdUseCase.buscar(id);
 		var uri = uriBuilder.path("/mesa/{id}").buildAndExpand(mesa.getId()).toUri();
 		return ResponseEntity.created(uri).body(mesa);
 	 }

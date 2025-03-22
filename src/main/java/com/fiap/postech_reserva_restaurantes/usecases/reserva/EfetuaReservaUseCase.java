@@ -15,12 +15,9 @@ import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesaPorIdUseCas
 @Service
 public class EfetuaReservaUseCase {
 
-	@Autowired
-	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
-	
-	public ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
+	public static ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
 		
-		MesaEntity mesa = buscarMesaPorIdUseCase.buscar(reservaDTO.idMesa());
+		MesaEntity mesa = BuscarMesaPorIdUseCase.buscar(reservaDTO.idMesa());
 		
 		//fazer o mesmo com usuario 
 		

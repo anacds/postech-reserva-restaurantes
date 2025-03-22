@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ReservaEntity {
 
 	@Id
-	private Long id;
+	private String id;
 	public final MesaEntity mesa;
 	public final UsuarioEntity usuario;
 	public final RestauranteEntity restaurante;
@@ -18,11 +18,11 @@ public class ReservaEntity {
 	public final LocalDateTime dataHoraFim;
 	
 	public final DiaDaSemana diaDaSemana;
-	public final String status, observacao;
+	public String status, observacao;
 	public final int qtdPessoas;
 	
 	public ReservaEntity(MesaEntity mesa, UsuarioEntity usuario, RestauranteEntity restaurante,
-			LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim,String status,
+			LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, String status,
 			String observacao, int qtdPessoas) {
 		super();
 		this.mesa = mesa;
@@ -66,11 +66,11 @@ public class ReservaEntity {
 		return dia;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -106,4 +106,8 @@ public class ReservaEntity {
 		return qtdPessoas;
 	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }

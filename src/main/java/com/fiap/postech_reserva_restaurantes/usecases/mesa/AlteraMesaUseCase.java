@@ -4,21 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fiap.postech_reserva_restaurantes.dto.MesaDTO;
 import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
+import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
 import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 
 @Service
 public class AlteraMesaUseCase {
 	
 	@Autowired
-	public  MesaGateway mesaGateway;
+	public static MesaGateway mesaGateway;
 	
-	@Autowired
-	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
 	
-	public MesaEntity alterarMesa(MesaDTO mesaDTO) {
+	public static MesaEntity alterarMesa(MesaDTO mesaDTO) {
 		
 		try {
-			MesaEntity mesa = buscarMesaPorIdUseCase.buscar(mesaDTO.id());
+			RestauranteEntity restaurante = new RestauranteEntity();
+			
+			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante, mesaDTO.reservas());
 			return mesaGateway.alterarMesa(mesa);
 			
 		} catch (Exception e) {

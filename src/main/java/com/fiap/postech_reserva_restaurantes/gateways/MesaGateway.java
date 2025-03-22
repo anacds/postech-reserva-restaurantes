@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
 import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
 import com.fiap.postech_reserva_restaurantes.external.repositories.MesaRepository;
 import com.fiap.postech_reserva_restaurantes.interfaces.IMesaGateway;
@@ -23,7 +22,7 @@ public class MesaGateway implements IMesaGateway{
 		this.mongoTemplate = mongoTemplate;
 	}
 	
-	public MesaEntity obterPorId(Long id) {
+	public MesaEntity obterPorId(String id) {
 		return mesaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Mesa não existe"));
 	}
 
@@ -31,7 +30,7 @@ public class MesaGateway implements IMesaGateway{
 		return mesaRepository.save(mesa);
 	}
 
-	public List<MesaEntity> buscarMesasPorRestaurante(Long idRestaurante) {
+	public List<MesaEntity> buscarMesasPorRestaurante(String idRestaurante) {
 		Query query = new Query(Criteria.where("restaurante_id").is(idRestaurante));
 		return mongoTemplate.find(query, MesaEntity.class);
 	}
@@ -40,8 +39,9 @@ public class MesaGateway implements IMesaGateway{
 		return mesaRepository.save(mesa);
 	}
 
-	public void excluirMesa(Long idMesa) {
+	public void excluirMesa(String idMesa) {
 		mesaRepository.deleteById(idMesa);
 	}
+
 
 }

@@ -12,11 +12,11 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class AdicionaMesaUseCase {
 	
 	@Autowired
-	public MesaGateway mesaGateway;
+	public static MesaGateway mesaGateway;
 	
-	public MesaEntity adicionarMesa(MesaDTO mesaDTO) {
+	public static MesaEntity adicionarMesa(MesaDTO mesaDTO) {
 		
-//		RestauranteEntity restaurante = buscarRestaurantePorId(mesaDTO.idRestaurante());
+//		RestauranteEntity restaurante = BuscarRestaurantePorId(mesaDTO.idRestaurante());
 		RestauranteEntity restaurante = new RestauranteEntity();
 		
 		MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante, null);

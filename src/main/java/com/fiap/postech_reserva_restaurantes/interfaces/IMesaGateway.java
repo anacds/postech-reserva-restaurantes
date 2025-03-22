@@ -8,12 +8,12 @@ public interface IMesaGateway {
 	
 	public MesaEntity criarMesa(MesaEntity mesa);
 	
-	public MesaEntity obterPorId(Long idMesa);
+	public MesaEntity obterPorId(String idMesa);
 	
-	public List<MesaEntity> buscarMesasPorRestaurante(Long idRestaurante);
+	public List<MesaEntity> buscarMesasPorRestaurante(String idRestaurante);
 	
 	public MesaEntity alterarMesa(MesaEntity mesa);
 	
-	public void excluirMesa(Long idMesa);
+	public void excluirMesa(String idMesa);
 	
 }

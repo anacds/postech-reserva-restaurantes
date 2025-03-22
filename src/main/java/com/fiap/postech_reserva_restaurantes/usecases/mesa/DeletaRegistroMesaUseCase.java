@@ -13,18 +13,15 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class DeletaRegistroMesaUseCase {
 	
 	@Autowired
-	public MesaGateway mesaGateway;
+	public static MesaGateway mesaGateway;
 	
-	@Autowired
-	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
-	
-	public void deletarMesa(MesaDTO mesaDTO) {
+	public static void deletarMesa(MesaDTO mesaDTO) {
 		try {
-			MesaEntity mesa = buscarMesaPorIdUseCase.buscar(mesaDTO.id());
+			MesaEntity mesa = BuscarMesaPorIdUseCase.buscar(mesaDTO.id());
 			
 			// Se tiver algum registro associado à essa lista, significa que essa mesa está sendo reservada, 
 			// então não pode ser excluída
-			if (!Objects.isNull(mesa.getIndisponivel())) {
+			if (!Objects.isNull(mesa.getReservas())) {
 				System.out.println("Mesa não pode ser excluída.");
 			}else {
 				mesaGateway.excluirMesa(mesa.getId());;

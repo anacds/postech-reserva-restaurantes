@@ -11,12 +11,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class MesaEntity {
 	
 	@Id
-	private Long id;
+	private String id;
 	public final Integer numero, capacidade;
 	public final RestauranteEntity restaurante;
-	public final List<HorarioReservaMesaEntity> indisponivel;
+	public final List<ReservaEntity> reservas;
 	
-	public MesaEntity(Integer numero, Integer capacidade, RestauranteEntity restaurante, List<HorarioReservaMesaEntity> indisponivel) 
+	public MesaEntity(Integer numero, Integer capacidade, RestauranteEntity restaurante, List<ReservaEntity> reservas) 
 			throws IllegalArgumentException{
 		
 		validaNumero(capacidade);
@@ -26,15 +26,15 @@ public class MesaEntity {
 		this.capacidade = capacidade;
 		this.restaurante = restaurante;
 		
-		if (Objects.isNull(indisponivel)) {
-			this.indisponivel = new ArrayList<HorarioReservaMesaEntity>();
+		if (Objects.isNull(reservas)) {
+			this.reservas = new ArrayList<ReservaEntity>();
 		}else {
-			this.indisponivel = indisponivel;
+			this.reservas = reservas;
 		}
 		
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -50,8 +50,8 @@ public class MesaEntity {
 		return restaurante;
 	}
 	
-	public List<HorarioReservaMesaEntity> getIndisponivel() {
-		return indisponivel;
+	public List<ReservaEntity> getReservas() {
+		return reservas;
 	}
 
 	private void validaNumero(Integer valor) throws IllegalArgumentException {
