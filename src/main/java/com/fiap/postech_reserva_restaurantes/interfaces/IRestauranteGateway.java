@@ -3,12 +3,13 @@ package com.fiap.postech_reserva_restaurantes.interfaces;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IRestauranteGateway {
 
     public RestauranteEntity cadastrarRestaurante(RestauranteEntity restaurante);
 
-    public RestauranteEntity buscarRestaurantePorId(String id);
+    public Optional<RestauranteEntity> buscarRestaurantePorId(String id);
 
     public List<RestauranteEntity> buscarRestaurantesPorNome(String nome);
 

@@ -5,6 +5,9 @@ import com.fiap.postech_reserva_restaurantes.entities.CNPJEntity;
 import com.fiap.postech_reserva_restaurantes.entities.EnderecoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.HorarioFuncionamentoEntity;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
+import com.fiap.postech_reserva_restaurantes.external.repositories.RestauranteRepository;
+import com.fiap.postech_reserva_restaurantes.gateways.RestauranteGateway;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +15,9 @@ import java.util.List;
 
 @Service
 public class CadastroRestauranteUseCase {
+
+    @Autowired
+    public static RestauranteGateway restauranteGateway;
 
     public static RestauranteEntity cadastrarRestaurante(RestauranteDTO restauranteDTO) {
         if (restauranteDTO == null) {
@@ -54,13 +60,13 @@ public class CadastroRestauranteUseCase {
                 restauranteDTO.capacidade()
         );
 
-        try {
-			validarDadosRestaurante(restaurante);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //try {
+		//	validarDadosRestaurante(restaurante);
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //}
 
-        return restaurante;
+        return restauranteGateway.cadastrarRestaurante(restaurante);
     }
 
 private static void validarDadosRestaurante(RestauranteEntity restaurante) throws Exception {

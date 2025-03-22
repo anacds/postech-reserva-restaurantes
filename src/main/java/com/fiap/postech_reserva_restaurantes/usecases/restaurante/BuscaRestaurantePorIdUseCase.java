@@ -5,13 +5,15 @@ import com.fiap.postech_reserva_restaurantes.gateways.RestauranteGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class BuscaRestaurantePorId {
+public class BuscaRestaurantePorIdUseCase {
 
     @Autowired
     public static RestauranteGateway restauranteGateway;
 
-    public static RestauranteEntity buscarRestaurantePorId(String id) {
+    public static Optional<RestauranteEntity> buscarRestaurantePorId(String id) {
         try {
             return restauranteGateway.buscarRestaurantePorId(id);
         } catch (Exception e) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("restaurante")
@@ -36,11 +37,14 @@ public class RestauranteController {
         DelecaoRestauranteUseCase.deletarRestaurante(id);
     }
 
+    @GetMapping("/")
+    public List<RestauranteEntity> buscarRestaurantes(){
+        return BuscaRestaurantesUseCase.buscarRestaurantes();
+    }
+
     @GetMapping("/buscar-por-id")
-    public ResponseEntity<RestauranteEntity> buscarReservaPorId(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
-        RestauranteEntity restaurante = BuscaRestaurantePorId.buscarRestaurantePorId(id);
-        var uri = uriBuilder.path("/reserva/buscar-por-id/{id}").buildAndExpand(restaurante.getId()).toUri();
-        return ResponseEntity.created(uri).body(restaurante);
+    public Optional<RestauranteEntity> buscarRestaurantePorId(@RequestParam("id") String id){
+        return BuscaRestaurantePorIdUseCase.buscarRestaurantePorId(id);
     }
 
     @GetMapping("/buscar-por-bairro")

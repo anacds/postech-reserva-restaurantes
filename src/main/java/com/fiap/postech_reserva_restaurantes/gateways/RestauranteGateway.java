@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestauranteGateway implements IRestauranteGateway {
@@ -27,8 +28,8 @@ public class RestauranteGateway implements IRestauranteGateway {
     }
 
     @Override
-    public RestauranteEntity buscarRestaurantePorId(String id){
-        return null;
+    public Optional<RestauranteEntity> buscarRestaurantePorId(String id){
+        return restauranteRepository.findById(id);
     }
 
 

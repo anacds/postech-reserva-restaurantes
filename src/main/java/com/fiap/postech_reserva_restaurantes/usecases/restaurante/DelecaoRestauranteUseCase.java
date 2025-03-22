@@ -5,6 +5,8 @@ import com.fiap.postech_reserva_restaurantes.gateways.RestauranteGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class DelecaoRestauranteUseCase {
 
@@ -12,7 +14,7 @@ public class DelecaoRestauranteUseCase {
 
     public static void deletarRestaurante(String id) {
         try {
-            RestauranteEntity restaurante = restauranteGateway.buscarRestaurantePorId(id);
+            Optional<RestauranteEntity> restaurante = restauranteGateway.buscarRestaurantePorId(id);
             if (restaurante != null) {
                 restauranteGateway.deletarRestaurante(id);
             } else {
