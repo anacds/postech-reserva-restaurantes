@@ -14,7 +14,7 @@ public interface IReservaGateway {
 	
 	public ReservaEntity buscaReservaPorId(String idReserva);
 	
-	public void alterarReserva(ReservaEntity reserva);
+	public ReservaEntity alterarReserva(ReservaEntity reserva);
 	
 	public void excluirReserva(String idReserva);
 	

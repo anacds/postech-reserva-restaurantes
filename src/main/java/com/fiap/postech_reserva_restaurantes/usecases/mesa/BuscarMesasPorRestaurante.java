@@ -11,9 +11,9 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class BuscarMesasPorRestaurante {
 	
 	@Autowired
-	public static MesaGateway mesaGateway;
+	public MesaGateway mesaGateway;
 	
-	public static List<MesaEntity> buscar(String idRestaurante){
+	public List<MesaEntity> buscar(String idRestaurante){
 		try {
 			return mesaGateway.buscarMesasPorRestaurante(idRestaurante);
 			

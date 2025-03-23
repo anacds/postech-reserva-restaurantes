@@ -40,8 +40,8 @@ public class ReservaGateway implements IReservaGateway{
 		return reservaRepository.findById(idReserva).orElseThrow(() -> new IllegalArgumentException("Reserva não cadastrada"));
 	}
 
-	public void alterarReserva(ReservaEntity reserva) {
-		reservaRepository.save(reserva);
+	public ReservaEntity alterarReserva(ReservaEntity reserva) {
+		return reservaRepository.save(reserva);
 	}
 
 	public void excluirReserva(String idReserva) {

@@ -13,11 +13,14 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class DeletaRegistroMesaUseCase {
 	
 	@Autowired
-	public static MesaGateway mesaGateway;
+	public MesaGateway mesaGateway;
+
+	@Autowired
+	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
 	
-	public static void deletarMesa(MesaDTO mesaDTO) {
+	public void deletarMesa(MesaDTO mesaDTO) {
 		try {
-			MesaEntity mesa = BuscarMesaPorIdUseCase.buscar(mesaDTO.id());
+			MesaEntity mesa = buscarMesaPorIdUseCase.buscar(mesaDTO.id());
 			
 			// Se tiver algum registro associado à essa lista, significa que essa mesa está sendo reservada, 
 			// então não pode ser excluída

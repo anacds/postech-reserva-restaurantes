@@ -9,9 +9,9 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class BuscarMesaPorIdUseCase {
 	
 	@Autowired
-	public static MesaGateway mesaGateway;
+	public MesaGateway mesaGateway;
 	
-	public static MesaEntity buscar(String id) {
+	public MesaEntity buscar(String id) {
 		try {
 			return mesaGateway.obterPorId(id);
 			

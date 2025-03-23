@@ -18,13 +18,16 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class VerificaMesasDisponiveisPorHorario {
 	
 	@Autowired
-	public static MesaGateway mesaGateway;
+	public MesaGateway mesaGateway;
 	
-	public static List<MesaEntity> verifica(String idRestaurante, LocalDateTime dataInicio, LocalDateTime dataFim) {
+	@Autowired
+	private BuscarMesasPorRestaurante buscarMesasPorRestaurante;
+	
+	public List<MesaEntity> verifica(String idRestaurante, LocalDateTime dataInicio, LocalDateTime dataFim) {
 		
 		RestauranteEntity restaurante = new RestauranteEntity();
 		
-		List<MesaEntity> mesasDesseRestaurante = BuscarMesasPorRestaurante.buscar(restaurante.getId());
+		List<MesaEntity> mesasDesseRestaurante = buscarMesasPorRestaurante.buscar(restaurante.getId());
 		
 		List<MesaEntity> mesasDisponiveisHorario = new ArrayList<MesaEntity>();
 		

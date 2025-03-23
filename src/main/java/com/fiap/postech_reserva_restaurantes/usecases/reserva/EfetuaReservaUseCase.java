@@ -30,6 +30,12 @@ public class EfetuaReservaUseCase {
 	@Autowired
 	private ReservaGateway reservaGateway;
 	
+	@Autowired
+	private VerificaMesasDisponiveisPorHorario verificaMesasDisponiveisPorHorario;
+	
+	@Autowired
+	private VerificaCapacidadeMesaUseCase verificaCapacidadeMesaUseCase;
+	
 	public ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
 		
 		try {
@@ -62,14 +68,14 @@ public class EfetuaReservaUseCase {
 
 			//Valida se existem mesas disponíveis nessa restaurante nesse horário. Retorna mesas disponíveis
 			List<MesaEntity> mesasDisponiveisPorHorario = 
-				VerificaMesasDisponiveisPorHorario.verifica(restaurante.getId(), reserva.getDataHoraInicio(), reserva.getDataHoraFim());
+					verificaMesasDisponiveisPorHorario.verifica(restaurante.getId(), reserva.getDataHoraInicio(), reserva.getDataHoraFim());
 			
 			if (Objects.isNull(mesasDisponiveisPorHorario)) {
 				throw new Exception("Não existem mesas disponíveis nesse horário.");
 			}
 			
 			//valida quais mesas disponiveis por horario cumnprem com os requisitos de 
-			List<MesaEntity> mesasDisponiveis = VerificaCapacidadeMesaUseCase.verificar(mesasDisponiveisPorHorario, reserva.getQtdPessoas());
+			List<MesaEntity> mesasDisponiveis = verificaCapacidadeMesaUseCase.verificar(mesasDisponiveisPorHorario, reserva.getQtdPessoas());
 			
 			if (Objects.isNull(mesasDisponiveis)) {
 				throw new Exception("Não existem mesas disponíveis para esse horário e capacidade.");

@@ -12,9 +12,9 @@ import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
 public class VerificaCapacidadeMesaUseCase {
 
 	@Autowired
-	public static MesaGateway mesaGateway;
+	public MesaGateway mesaGateway;
 	
-	public static List<MesaEntity> verificar(List<MesaEntity> mesas, int qtdPessoasReserva){
+	public List<MesaEntity> verificar(List<MesaEntity> mesas, int qtdPessoasReserva){
 	
 		List<MesaEntity> mesasComCapacidade =  
 				mesas.stream().filter(x -> x.getCapacidade() >= qtdPessoasReserva).collect(Collectors.toList());

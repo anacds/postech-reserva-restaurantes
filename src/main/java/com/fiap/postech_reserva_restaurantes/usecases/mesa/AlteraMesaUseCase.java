@@ -14,12 +14,12 @@ import com.fiap.postech_reserva_restaurantes.usecases.restaurante.BuscaRestauran
 public class AlteraMesaUseCase {
 	
 	@Autowired
-	public static MesaGateway mesaGateway;
+	public  MesaGateway mesaGateway;
 	
 	@Autowired
-	public static BuscaRestaurantePorIdUseCase buscaRestaurantePorIdUseCase;
+	public BuscaRestaurantePorIdUseCase buscaRestaurantePorIdUseCase;
 	
-	public static MesaEntity alterarMesa(MesaDTO mesaDTO) {
+	public MesaEntity alterarMesa(MesaDTO mesaDTO) {
 		
 		try {
 			Optional<RestauranteEntity> restaurante =  buscaRestaurantePorIdUseCase.buscarRestaurantePorId(mesaDTO.idRestaurante());
