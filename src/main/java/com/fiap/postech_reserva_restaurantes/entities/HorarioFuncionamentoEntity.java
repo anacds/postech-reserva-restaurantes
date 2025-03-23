@@ -35,17 +35,17 @@ public class HorarioFuncionamentoEntity {
     private void validar(DiaDaSemana diaSemana, LocalDateTime horarioAbertura, LocalDateTime horarioFechamento) {
 
         try {
-//            LocalTime abertura = LocalTime.parse(horarioAbertura);
-//            LocalTime fechamento = LocalTime.parse(horarioFechamento);
-//
-//            // Ajusta fechamento para o dia seguinte se for 00:00
-//            if (fechamento.equals(LocalTime.MIDNIGHT)) {
-//                fechamento = LocalTime.MAX;
-//            }
-//
-//            if (!fechamento.isAfter(abertura)) {
-//                throw new IllegalArgumentException("O horário de fechamento deve ser posterior ao horário de abertura.");
-//            }
+            LocalTime abertura = LocalTime.parse(horarioAbertura);
+            LocalTime fechamento = LocalTime.parse(horarioFechamento);
+
+            // Ajusta fechamento para o dia seguinte se for 00:00
+            if (fechamento.equals(LocalTime.MIDNIGHT)) {
+                fechamento = LocalTime.MAX;
+            }
+
+            if (!fechamento.isAfter(abertura)) {
+                throw new IllegalArgumentException("O horário de fechamento deve ser posterior ao horário de abertura.");
+            }
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Os horários devem estar no formato HH:mm.");
         }
