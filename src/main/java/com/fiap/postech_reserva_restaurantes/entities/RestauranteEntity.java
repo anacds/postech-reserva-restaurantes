@@ -101,4 +101,5 @@ public class RestauranteEntity {
             throw new IllegalArgumentException("A capacidade do restaurante deve ser um valor positivo.");
         }
     }
+
 }
