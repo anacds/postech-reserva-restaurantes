@@ -37,16 +37,16 @@ public class MesaController {
 	
 	@PostMapping
 	@Transactional
-	public MesaEntity adicionaMesaUseCase(@RequestBody MesaDTO mesaDTO){
+	public ResponseEntity<MesaEntity> adicionaMesaUseCase(@RequestBody MesaDTO mesaDTO){
 		MesaEntity mesa = adicionaMesaUseCase.adicionarMesa(mesaDTO);
-		return mesa;
+		return new ResponseEntity<> (mesa, HttpStatus.CREATED);
 	}
 	
 	@PutMapping
 	@Transactional
-	public MesaEntity alteraMesaUseCase(@RequestBody MesaDTO mesaDTO){
+	public ResponseEntity<MesaEntity> alteraMesaUseCase(@RequestBody MesaDTO mesaDTO){
 		MesaEntity mesa = alteraMesaUseCase.alterarMesa(mesaDTO);
-		return mesa;
+		return new ResponseEntity<> (mesa, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping

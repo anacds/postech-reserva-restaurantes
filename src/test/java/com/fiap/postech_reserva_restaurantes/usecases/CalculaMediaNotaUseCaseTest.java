@@ -1,5 +1,5 @@
-/*package com.fiap.postech_reserva_restaurantes.usecases;
-
+package com.fiap.postech_reserva_restaurantes.usecases;
+/*
 import com.fiap.postech_reserva_restaurantes.dto.FeedbackDTO;
 import com.fiap.postech_reserva_restaurantes.entities.*;
 import com.fiap.postech_reserva_restaurantes.interfaces.IFeedbackGateway;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
