@@ -19,7 +19,7 @@ public interface IRestauranteGateway {
 
     public List<RestauranteEntity> listarRestaurantes();
 
-    public void atualizarRestaurante(RestauranteEntity restaurante);
+    public RestauranteEntity atualizarRestaurante(RestauranteEntity restaurante);
 
     public void deletarRestaurante(String id);
 }

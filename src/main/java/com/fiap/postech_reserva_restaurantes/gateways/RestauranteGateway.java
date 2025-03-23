@@ -53,8 +53,8 @@ public class RestauranteGateway implements IRestauranteGateway {
         return restauranteRepository.findAll();
     }
 
-    public void atualizarRestaurante(RestauranteEntity restaurante){
-        restauranteRepository.save(restaurante);
+    public RestauranteEntity atualizarRestaurante(RestauranteEntity restaurante){
+        return restauranteRepository.save(restaurante);
     }
 
     @Override
