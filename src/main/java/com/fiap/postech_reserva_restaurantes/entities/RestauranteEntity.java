@@ -18,8 +18,11 @@ public class RestauranteEntity {
     private List<String> tipoCozinha;
     private List<HorarioFuncionamentoEntity> horariosFuncionamento;
     private int capacidade;
+    
+    public RestauranteEntity() {
+	}
 
-    public RestauranteEntity(String nome, CNPJEntity cnpj, EnderecoEntity endereco,
+	public RestauranteEntity(String nome, CNPJEntity cnpj, EnderecoEntity endereco,
                              NotaEntity nota, List<ComentarioEntity> comentarios,
                              List<String> tipoCozinha, List<HorarioFuncionamentoEntity> horariosFuncionamento, int capacidade) {
         super();

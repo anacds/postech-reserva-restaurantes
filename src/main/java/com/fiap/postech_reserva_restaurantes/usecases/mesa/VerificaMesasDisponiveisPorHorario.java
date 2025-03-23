@@ -22,26 +22,27 @@ public class VerificaMesasDisponiveisPorHorario {
 	
 	public static List<MesaEntity> verifica(String idRestaurante, LocalDateTime dataInicio, LocalDateTime dataFim) {
 		
-//		RestauranteEntity restaurante = new RestauranteEntity();
-//		
-//		List<MesaEntity> mesasDesseRestaurante = BuscarMesasPorRestaurante.buscar(restaurante.getId());
-//		
+		RestauranteEntity restaurante = new RestauranteEntity();
+		
+		List<MesaEntity> mesasDesseRestaurante = BuscarMesasPorRestaurante.buscar(restaurante.getId());
+		
 		List<MesaEntity> mesasDisponiveisHorario = new ArrayList<MesaEntity>();
 		
-//		for(MesaEntity mesa : mesasDesseRestaurante) {
-//			List<ReservaEntity> reservasDaMesa = mesa.getReservas();
-//			
-//			List<ReservaEntity> reservasNesseHorario = reservasDaMesa.stream()
-//				.filter(x ->
+		for(MesaEntity mesa : mesasDesseRestaurante) {
+			List<ReservaEntity> reservasDaMesa = mesa.getReservas();
+			
+			List<ReservaEntity> reservasNesseHorario = reservasDaMesa.stream()
+				.filter(x ->
+						x.getDataHoraFim().isBefore(dataInicio) &&
 //						x.getDataHoraInicio().isBefore(null) &&
-//						x.getDataHoraFim().isBefore(null)).collect(Collectors.toList());
-//			
-//			if (Objects.isNull(reservasNesseHorario)) {
-//				mesasDisponiveisHorario.add(mesa);
-//			}
-//			
-//		}
-//		
+						x.getDataHoraFim().isBefore(null)).collect(Collectors.toList());
+			
+			if (Objects.isNull(reservasNesseHorario)) {
+				mesasDisponiveisHorario.add(mesa);
+			}
+			
+		}
+		
 		return mesasDisponiveisHorario;
 		
 	}
