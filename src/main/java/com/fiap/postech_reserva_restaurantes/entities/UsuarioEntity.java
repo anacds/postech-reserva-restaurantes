@@ -1,4 +1,5 @@
 package com.fiap.postech_reserva_restaurantes.entities;
+
 import com.fiap.postech_reserva_restaurantes.valueobjects.Cpf;
 
 import java.time.LocalDate;
@@ -11,12 +12,12 @@ public class UsuarioEntity extends PessoaEntity {
     private final EnderecoEntity endereco;
 
     public UsuarioEntity(
-            String id,
-            String nome,
-            Cpf cpf,
-            LocalDate dataNascimento,
-            String telefone,
-            EnderecoEntity endereco
+        String id,
+        String nome,
+        Cpf cpf,
+        LocalDate dataNascimento,
+        String telefone,
+        EnderecoEntity endereco
     ) {
         super(nome, cpf, dataNascimento);
         this.id = Objects.requireNonNull(id, "ID não pode ser nulo.");
@@ -24,7 +25,7 @@ public class UsuarioEntity extends PessoaEntity {
         this.endereco = Objects.requireNonNull(endereco, "Endereço não pode ser nulo.");
     }
 
-	public String getId() {
+    public String getId() {
         return id;
     }
 
@@ -49,4 +50,3 @@ public class UsuarioEntity extends PessoaEntity {
         return Objects.hash(id);
     }
 }
-

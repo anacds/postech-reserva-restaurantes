@@ -9,8 +9,7 @@ public abstract class PessoaEntity {
     protected final Cpf cpf;
     protected final LocalDate dataNascimento;
 
-
-	public PessoaEntity(String nome, Cpf cpf, LocalDate dataNascimento) {
+    public PessoaEntity(String nome, Cpf cpf, LocalDate dataNascimento) {
         this.nome = Objects.requireNonNull(nome, "Nome não pode ser nulo.");
         this.cpf = Objects.requireNonNull(cpf, "CPF não pode ser nulo.");
         this.dataNascimento = Objects.requireNonNull(dataNascimento, "Data de nascimento não pode ser nula.");

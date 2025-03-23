@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,7 +39,7 @@ public class MesaController {
 		return new ResponseEntity<>(mesa, HttpStatus.OK);
 	}
 	
-	@PutMapping
+	@DeleteMapping
 	@Transactional
 	public ResponseEntity deletaMesaUseCase(MesaDTO mesaDTO){
 		DeletaRegistroMesaUseCase.deletarMesa(mesaDTO);
@@ -46,7 +47,7 @@ public class MesaController {
 	}
 	
 	@GetMapping
-	 public ResponseEntity<MesaEntity> buscarReservaPorUsuario(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
+	 public ResponseEntity<MesaEntity> buscarMesaPorId(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
 		MesaEntity mesa = BuscarMesaPorIdUseCase.buscar(id);
 		var uri = uriBuilder.path("/mesa/{id}").buildAndExpand(mesa.getId()).toUri();
 		return ResponseEntity.created(uri).body(mesa);
