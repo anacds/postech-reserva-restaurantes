@@ -16,6 +16,7 @@ public class BuscarMesasPorRestaurante {
 	public static List<MesaEntity> buscar(String idRestaurante){
 		try {
 			return mesaGateway.buscarMesasPorRestaurante(idRestaurante);
+			
 		} catch (Exception e) {
 			System.out.println("Não foi possível achar mesas para esse restaurante");
 			return null;

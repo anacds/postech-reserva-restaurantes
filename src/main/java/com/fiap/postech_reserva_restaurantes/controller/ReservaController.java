@@ -1,7 +1,6 @@
 package com.fiap.postech_reserva_restaurantes.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.fiap.postech_reserva_restaurantes.dto.ReservaDTO;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
 import com.fiap.postech_reserva_restaurantes.usecases.reserva.AlteraReservaUseCase;
@@ -24,38 +22,36 @@ import com.fiap.postech_reserva_restaurantes.usecases.reserva.BuscaReservaPorIdU
 import com.fiap.postech_reserva_restaurantes.usecases.reserva.BuscaReservasPorRestauranteUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.reserva.BuscaReservasPorUsuarioUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.reserva.CancelaReservaUseCase;
-import com.fiap.postech_reserva_restaurantes.usecases.reserva.EfetuaReservaUseCase;
 
 @Controller
 @RequestMapping("reserva")
 public class ReservaController {
 
-	 @PostMapping
-	 @Transactional
-	 public ResponseEntity<ReservaEntity> criarReserva(@RequestBody ReservaDTO reservaDTO) {
-		 ReservaEntity reserva = EfetuaReservaUseCase.reservarMesa(reservaDTO);
-		 return new ResponseEntity<>(reserva, HttpStatus.CREATED);
-	 }
+//	 @PostMapping
+//	 @Transactional
+//	 public ResponseEntity<ReservaEntity> criarReserva(@RequestBody ReservaDTO reservaDTO) {
+//		 ReservaEntity reserva = EfetuaReservaUseCase.reservarMesa(reservaDTO);
+//		 return new ResponseEntity<>(reserva, HttpStatus.CREATED);
+//	 }
 	 
 	 @PutMapping
 	 @Transactional
-	 public ResponseEntity<ReservaEntity> alterarReserva(@RequestBody ReservaDTO reservaDTO){
+	 public ReservaEntity alterarReserva(@RequestBody ReservaDTO reservaDTO){
 		 ReservaEntity reserva = AlteraReservaUseCase.alterar(reservaDTO);
-		 return new ResponseEntity<ReservaEntity>(reserva, HttpStatus.ACCEPTED);
+		 return reserva;
 	 }
 	 
 	 @DeleteMapping("/{id}")
 	 @Transactional
-	 public ResponseEntity<ReservaEntity> cancelarReserva(@PathVariable String id){
+	 public ReservaEntity cancelarReserva(@PathVariable String id){
 		 ReservaEntity reserva = CancelaReservaUseCase.cancelar(id);
-		 return new ResponseEntity<ReservaEntity>(reserva, HttpStatus.ACCEPTED);
+		 return reserva;
 	 }
 	 
 	 @GetMapping("/buscar-por-id")
-	 public ResponseEntity<ReservaEntity> buscarReservaPorId(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
+	 public ReservaEntity buscarReservaPorId(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
 		ReservaEntity reserva = BuscaReservaPorIdUseCase.buscar(id);
-		var uri = uriBuilder.path("/reserva/buscar-por-id/{id}").buildAndExpand(reserva.getId()).toUri();
-		return ResponseEntity.created(uri).body(reserva);
+		return reserva;
 	 }
 	 
 	 @GetMapping("/buscar-por-restaurante")
