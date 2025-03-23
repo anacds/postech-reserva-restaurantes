@@ -2,6 +2,7 @@ package com.fiap.postech_reserva_restaurantes.usecases.mesa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,15 @@ public class AdicionaMesaUseCase {
 	
 	public static MesaEntity adicionarMesa(MesaDTO mesaDTO) {
 		
-		Optional<RestauranteEntity> restauranteOpt = buscaRestaurantePorIdUseCase.buscarRestaurantePorId(mesaDTO.idRestaurante());
-		
-		MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restauranteOpt.get(), new ArrayList<ReservaEntity>());
-	
 		try {
+			Optional<RestauranteEntity> restauranteOpt = buscaRestaurantePorIdUseCase.buscarRestaurantePorId(mesaDTO.idRestaurante());
+			
+			if (Objects.isNull(restauranteOpt)) {
+				throw new Exception("Restaurante de id" + mesaDTO.idRestaurante() + " não existe");
+			}
+			
+			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restauranteOpt.get(), new ArrayList<ReservaEntity>());
+			
 			return mesaGateway.criarMesa(mesa);
 		} catch (Exception e) {
 			System.out.println("Não foi possível criar uma mesa");

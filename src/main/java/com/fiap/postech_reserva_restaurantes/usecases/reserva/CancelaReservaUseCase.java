@@ -12,15 +12,24 @@ import com.fiap.postech_reserva_restaurantes.gateways.ReservaGateway;
 public class CancelaReservaUseCase {
 
 	@Autowired
-	public static ReservaGateway reservaGateway;
+	public ReservaGateway reservaGateway;
 	
-	public static ReservaEntity cancelar(String idReserva) {
-		ReservaEntity reserva = BuscaReservaPorIdUseCase.buscar(idReserva);
+	@Autowired
+	public BuscaReservaPorIdUseCase buscarReservaPorIdUseCase;
+	
+	@Autowired
+	public AlteraReservaUseCase alteraReservaUseCase;
+	
+	public ReservaEntity cancelar(String idReserva) {
+		
+		ReservaEntity reserva = buscarReservaPorIdUseCase.buscar(idReserva);
+		
 		reserva.setStatus(Status.CANCELADA);
 		
-		ReservaDTO reservaDTO = new ReservaDTO(idReserva, idReserva, idReserva, null, null, idReserva, idReserva, 0);
+		ReservaDTO reservaDTO = new ReservaDTO(reserva.getId(), reserva.getUsuario().getId(), reserva.getRestaurante().getId(), 
+				reserva.getDataHoraInicio(), reserva.getDataHoraFim(), reserva.getStatus(), reserva.getObservacao(), reserva.getQtdPessoas());
 		
-		ReservaEntity reservaAlterada = AlteraReservaUseCase.alterar(reservaDTO);
+		ReservaEntity reservaAlterada = alteraReservaUseCase.alterar(reservaDTO);
 		
 		return reservaAlterada;
 	}

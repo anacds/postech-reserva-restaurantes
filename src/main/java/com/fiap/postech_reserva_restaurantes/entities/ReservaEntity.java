@@ -3,6 +3,7 @@ package com.fiap.postech_reserva_restaurantes.entities;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,8 +11,12 @@ public class ReservaEntity {
 
 	@Id
 	private String id;
-	public final MesaEntity mesa;
+	
+	@DBRef
+	public MesaEntity mesa;
+	@DBRef
 	public final UsuarioEntity usuario;
+	@DBRef
 	public final RestauranteEntity restaurante;
 	
 	public final LocalDateTime dataHoraInicio;
@@ -76,6 +81,10 @@ public class ReservaEntity {
 
 	public MesaEntity getMesa() {
 		return mesa;
+	}
+	
+	public void setMesa(MesaEntity mesa) {
+		this.mesa = mesa;
 	}
 
 	public RestauranteEntity getRestaurante() {

@@ -8,7 +8,7 @@ import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
 @Service
 public class AlteraReservaUseCase {
 
-	public static ReservaEntity alterar(ReservaDTO reservaDTO) {
+	public ReservaEntity alterar(ReservaDTO reservaDTO) {
 		return null;
 	}
 

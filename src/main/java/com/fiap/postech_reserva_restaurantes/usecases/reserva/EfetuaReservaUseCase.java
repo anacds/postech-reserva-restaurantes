@@ -1,79 +1,96 @@
-//package com.fiap.postech_reserva_restaurantes.usecases.reserva;
-//
-//import java.time.LocalDateTime;
-//import java.util.List;
-//import java.util.Objects;
-//import java.util.Random;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//import com.fiap.postech_reserva_restaurantes.dto.ReservaDTO;
-//import com.fiap.postech_reserva_restaurantes.entities.HorarioFuncionamentoEntity;
-//import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
-//import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
-//import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
-//import com.fiap.postech_reserva_restaurantes.entities.UsuarioEntity;
-//import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesaPorIdUseCase;
-//import com.fiap.postech_reserva_restaurantes.usecases.mesa.VerificaCapacidadeMesaUseCase;
-//import com.fiap.postech_reserva_restaurantes.usecases.mesa.VerificaMesasDisponiveisPorHorario;
-//
-//@Service
-//public class EfetuaReservaUseCase {
-//
-//	public static ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
-//		
-//		MesaEntity mesa = BuscarMesaPorIdUseCase.buscar(reservaDTO.idMesa());
-//		
-////		UsuarioEntity usuario = BuscarUsuarioPorIdUseCase.buscar(reservaDTO.idUsuario());
-//		UsuarioEntity usuario = new UsuarioEntity();
-//		
-////		RestauranteEntity restaurante = BuscarRestaurantePorIdUseCase.buscar(reservaDTO.idRestaurante());
-//		RestauranteEntity restaurante = new RestauranteEntity();
-//		
-//		ReservaEntity reserva = new ReservaEntity(
-//				mesa,
-//				usuario, 
-//				restaurante, 
-//				reservaDTO.dataHoraInicio(),
-//				reservaDTO.dataHoraFim(),
-//				reservaDTO.status(), 
-//				reservaDTO.observacao(),
-//				reservaDTO.qtdPessoas());
-//
-//		try {
-//			// Valida se horário de reserva está dentro do horário de funcionamento do restaurante
-//			validarHorarioFuncionamentoRestaurante(restaurante, reserva);
-//			
-//			//Valida se existem mesas disponíveis nessa restaurante nesse horário. Retorna mesas disponíveis
-//			List<MesaEntity> mesasDisponiveisPorHorario = 
-//					VerificaMesasDisponiveisPorHorario.verifica(restaurante.getId(), reserva.getDataHoraInicio(), reserva.getDataHoraFim());
-//			
-//			if (Objects.isNull(mesasDisponiveisPorHorario)) {
-//				throw new Exception("Não existem mesas disponíveis nesse horário.");
-//			}
-//			
-//			List<MesaEntity> mesasDisponiveis = VerificaCapacidadeMesaUseCase.verificar(mesasDisponiveisPorHorario, reserva.getQtdPessoas());
-//			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return null;
-//	}
-//	
-//	private static void validarHorarioFuncionamentoRestaurante(RestauranteEntity restaurante, ReservaEntity reserva) throws Exception {
-//		for (HorarioFuncionamentoEntity horario :restaurante.getHorariosFuncionamento() ) {
-//			
-//			if (horario.getDiaSemana() != reserva.diaDaSemana) {
-//				throw new Exception("Dia da semana de reserva inválido");
-//			}
-//			if (reserva.getDataHoraInicio().isBefore(horario.getHorarioAbertura())) {
-//				throw new Exception("Horário de reserva inválido");
-//			}
-//			if (reserva.getDataHoraFim().isAfter(horario.getHorarioFechamento())) {
-//				throw new Exception("Horário de reserva inválido");
-//			}
-//		}
-//	}
-//}
+package com.fiap.postech_reserva_restaurantes.usecases.reserva;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.fiap.postech_reserva_restaurantes.dto.ReservaDTO;
+import com.fiap.postech_reserva_restaurantes.entities.HorarioFuncionamentoEntity;
+import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
+import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
+import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
+import com.fiap.postech_reserva_restaurantes.entities.UsuarioEntity;
+import com.fiap.postech_reserva_restaurantes.gateways.ReservaGateway;
+import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesaPorIdUseCase;
+import com.fiap.postech_reserva_restaurantes.usecases.mesa.VerificaCapacidadeMesaUseCase;
+import com.fiap.postech_reserva_restaurantes.usecases.mesa.VerificaMesasDisponiveisPorHorario;
+import com.fiap.postech_reserva_restaurantes.usecases.restaurante.BuscaRestaurantePorIdUseCase;
+import com.fiap.postech_reserva_restaurantes.usecases.usuario.BuscarUsuarioUseCase;
+
+@Service
+public class EfetuaReservaUseCase {
+	
+	@Autowired
+	private BuscarUsuarioUseCase buscarUsuarioUseCase;
+	
+	@Autowired
+	private BuscaRestaurantePorIdUseCase buscarRestaurantePorId;
+	
+	@Autowired
+	private ReservaGateway reservaGateway;
+	
+	public ReservaEntity reservarMesa(ReservaDTO reservaDTO) {
+		
+		try {
+	
+			Optional<UsuarioEntity> usuarioOpt = buscarUsuarioUseCase.buscarPorId(reservaDTO.idUsuario());
+		
+			Optional<RestauranteEntity> restauranteOpt = buscarRestaurantePorId.buscarRestaurantePorId(reservaDTO.idRestaurante());
+			
+			if (Objects.isNull(usuarioOpt)) {
+				throw new Exception("Esse usuário não existe");
+			}
+			
+			if (Objects.isNull(restauranteOpt)) {
+				throw new Exception("Esse restaurante não existe");
+			}
+			
+			UsuarioEntity usuario = usuarioOpt.get();
+			
+			RestauranteEntity restaurante = restauranteOpt.get();
+			
+			ReservaEntity reserva = new ReservaEntity(
+					null,					//mesa
+					usuario, 
+					restaurante, 
+					reservaDTO.dataHoraInicio(),
+					reservaDTO.dataHoraFim(),
+					reservaDTO.status(), 
+					reservaDTO.observacao(),
+					reservaDTO.qtdPessoas());
+
+			//Valida se existem mesas disponíveis nessa restaurante nesse horário. Retorna mesas disponíveis
+			List<MesaEntity> mesasDisponiveisPorHorario = 
+				VerificaMesasDisponiveisPorHorario.verifica(restaurante.getId(), reserva.getDataHoraInicio(), reserva.getDataHoraFim());
+			
+			if (Objects.isNull(mesasDisponiveisPorHorario)) {
+				throw new Exception("Não existem mesas disponíveis nesse horário.");
+			}
+			
+			//valida quais mesas disponiveis por horario cumnprem com os requisitos de 
+			List<MesaEntity> mesasDisponiveis = VerificaCapacidadeMesaUseCase.verificar(mesasDisponiveisPorHorario, reserva.getQtdPessoas());
+			
+			if (Objects.isNull(mesasDisponiveis)) {
+				throw new Exception("Não existem mesas disponíveis para esse horário e capacidade.");
+			}
+			
+			Optional<MesaEntity> mesaEscolhidaParaReserva = mesasDisponiveis.stream().findAny();
+			
+			if (Objects.isNull(mesaEscolhidaParaReserva)) {
+				throw new Exception("Não existe mesa para essa reserva");
+			}
+			
+			reserva.setMesa(mesaEscolhidaParaReserva.get());
+			
+			reservaGateway.criarReserva(reserva);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}	
+	
+}

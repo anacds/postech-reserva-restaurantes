@@ -12,9 +12,9 @@ import com.fiap.postech_reserva_restaurantes.gateways.ReservaGateway;
 public class BuscaReservasPorUsuarioUseCase {
 	
 	@Autowired
-	public static ReservaGateway reservaGateway;
+	public ReservaGateway reservaGateway;
 	
-	public static List<ReservaEntity> buscar(String idUsuario) {
+	public List<ReservaEntity> buscar(String idUsuario) {
 		try {
 			return reservaGateway.buscarReservasPorUsuario(idUsuario);
 			
