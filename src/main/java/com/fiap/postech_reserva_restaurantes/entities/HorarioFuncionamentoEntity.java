@@ -1,7 +1,10 @@
 package com.fiap.postech_reserva_restaurantes.entities;
 
 
+
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 public class HorarioFuncionamentoEntity {
@@ -38,6 +41,22 @@ public class HorarioFuncionamentoEntity {
         }
         if (Objects.isNull(horarioFechamento)) {
             throw new IllegalArgumentException("Deve ser informado pelo menos um horário de fechamento.");
+        }
+
+        try {
+//            LocalTime abertura = LocalTime.parse(horarioAbertura);
+//            LocalTime fechamento = LocalTime.parse(horarioFechamento);
+//
+//            // Ajusta fechamento para o dia seguinte se for 00:00
+//            if (fechamento.equals(LocalTime.MIDNIGHT)) {
+//                fechamento = LocalTime.MAX;
+//            }
+//
+//            if (!fechamento.isAfter(abertura)) {
+//                throw new IllegalArgumentException("O horário de fechamento deve ser posterior ao horário de abertura.");
+//            }
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Os horários devem estar no formato HH:mm.");
         }
     }
 }
