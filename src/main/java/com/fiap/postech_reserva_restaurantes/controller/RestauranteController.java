@@ -16,8 +16,8 @@ import java.util.Optional;
 @RequestMapping("restaurante")
 public class RestauranteController {
 
-//    @Autowired
-//    private CadastroRestauranteUseCase cadastroRestauranteUseCase;
+    @Autowired
+    private CadastroRestauranteUseCase cadastroRestauranteUseCase;
     @Autowired
     private AtualizacaoRestauranteUseCase atualizacaoRestauranteUseCase;
     @Autowired
@@ -34,12 +34,12 @@ public class RestauranteController {
     private BuscaRestaurantesPorTipoCozinhaUseCase buscaRestaurantesPorTipoCozinhaUseCase;
 
 
-//    @PostMapping
-//    @Transactional
-//    public ResponseEntity<RestauranteEntity> cadastrarRestaurante(@RequestBody RestauranteDTO restauranteDTO) {
-//        RestauranteEntity restaurante = cadastroRestauranteUseCase.cadastrarRestaurante(restauranteDTO);
-//        return new ResponseEntity<>(restaurante, HttpStatus.CREATED);
-//    }
+    @PostMapping
+    @Transactional
+    public ResponseEntity<RestauranteEntity> cadastrarRestaurante(@RequestBody RestauranteDTO restauranteDTO) {
+        RestauranteEntity restaurante = cadastroRestauranteUseCase.cadastrarRestaurante(restauranteDTO);
+        return new ResponseEntity<>(restaurante, HttpStatus.CREATED);
+    }
 
     @PutMapping
     @Transactional

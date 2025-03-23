@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import com.fiap.postech_reserva_restaurantes.dto.ReservaDTO;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
@@ -24,7 +25,7 @@ import com.fiap.postech_reserva_restaurantes.usecases.reserva.BuscaReservasPorUs
 import com.fiap.postech_reserva_restaurantes.usecases.reserva.CancelaReservaUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.reserva.EfetuaReservaUseCase;
 
-@Controller
+@RestController
 @RequestMapping("reserva")
 public class ReservaController {
 	

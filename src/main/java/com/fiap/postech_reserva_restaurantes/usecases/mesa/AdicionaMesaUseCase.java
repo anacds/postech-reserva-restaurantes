@@ -27,17 +27,24 @@ public class AdicionaMesaUseCase {
 	public MesaEntity adicionarMesa(MesaDTO mesaDTO) {
 		
 		try {
+			
+			System.out.println(mesaDTO.numero());
+			System.out.println(mesaDTO.capacidade());
+			System.out.println(mesaDTO.idRestaurante());
+			
 			Optional<RestauranteEntity> restauranteOpt = buscaRestaurantePorIdUseCase.buscarRestaurantePorId(mesaDTO.idRestaurante());
 			
 			if (Objects.isNull(restauranteOpt)) {
 				throw new Exception("Restaurante de id" + mesaDTO.idRestaurante() + " não existe");
 			}
-			
+	
 			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restauranteOpt.get(), new ArrayList<ReservaEntity>());
 			
 			return mesaGateway.criarMesa(mesa);
+			
 		} catch (Exception e) {
 			System.out.println("Não foi possível criar uma mesa");
+			e.printStackTrace();
 			return null;
 		}
 		

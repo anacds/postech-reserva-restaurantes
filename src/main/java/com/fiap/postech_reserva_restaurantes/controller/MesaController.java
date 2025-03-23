@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.fiap.postech_reserva_restaurantes.dto.MesaDTO;
 import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
@@ -21,8 +22,8 @@ import com.fiap.postech_reserva_restaurantes.usecases.mesa.AlteraMesaUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesaPorIdUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.mesa.DeletaRegistroMesaUseCase;
 
-@Controller
-@RequestMapping("mesa")
+@RestController
+@RequestMapping("/mesa")
 public class MesaController {
 	
 	@Autowired
@@ -36,22 +37,22 @@ public class MesaController {
 	
 	@PostMapping
 	@Transactional
-	public MesaEntity adicionaMesaUseCase(MesaDTO mesaDTO){
+	public MesaEntity adicionaMesaUseCase(@RequestBody MesaDTO mesaDTO){
 		MesaEntity mesa = adicionaMesaUseCase.adicionarMesa(mesaDTO);
 		return mesa;
 	}
 	
 	@PutMapping
 	@Transactional
-	public MesaEntity alteraMesaUseCase(MesaDTO mesaDTO){
+	public MesaEntity alteraMesaUseCase(@RequestBody MesaDTO mesaDTO){
 		MesaEntity mesa = alteraMesaUseCase.alterarMesa(mesaDTO);
 		return mesa;
 	}
 	
 	@DeleteMapping
 	@Transactional
-	public ResponseEntity deletaMesaUseCase(MesaDTO mesaDTO){
-		deletaRegistroMesaUseCase.deletarMesa(mesaDTO);
+	public ResponseEntity deletaMesaUseCase(String id){
+		deletaRegistroMesaUseCase.deletarMesa(id);
 		return ResponseEntity.ok().build();
 	}
 	

@@ -18,9 +18,9 @@ public class DeletaRegistroMesaUseCase {
 	@Autowired
 	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
 	
-	public void deletarMesa(MesaDTO mesaDTO) {
+	public void deletarMesa(String idMesa) {
 		try {
-			MesaEntity mesa = buscarMesaPorIdUseCase.buscar(mesaDTO.id());
+			MesaEntity mesa = buscarMesaPorIdUseCase.buscar(idMesa);
 			
 			// Se tiver algum registro associado à essa lista, significa que essa mesa está sendo reservada, 
 			// então não pode ser excluída
