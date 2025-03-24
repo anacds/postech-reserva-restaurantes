@@ -28,10 +28,6 @@ public class AdicionaMesaUseCase {
 		
 		try {
 			
-			System.out.println(mesaDTO.numero());
-			System.out.println(mesaDTO.capacidade());
-			System.out.println(mesaDTO.idRestaurante());
-			
 			Optional<RestauranteEntity> restauranteOpt = buscaRestaurantePorIdUseCase.buscarRestaurantePorId(mesaDTO.idRestaurante());
 			
 			if (Objects.isNull(restauranteOpt)) {
@@ -39,6 +35,12 @@ public class AdicionaMesaUseCase {
 			}
 	
 			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restauranteOpt.get(), new ArrayList<ReservaEntity>());
+			mesa.setIdRestaurante(mesaDTO.idRestaurante());
+			
+			// se o id for especificado, ele será criado, caso contrário um id será gerado automaticamente
+			if (!Objects.isNull(mesaDTO.id()) && !"".equals(mesaDTO.id())) {
+				mesa.setId(mesaDTO.id());
+			}
 			
 			return mesaGateway.criarMesa(mesa);
 			

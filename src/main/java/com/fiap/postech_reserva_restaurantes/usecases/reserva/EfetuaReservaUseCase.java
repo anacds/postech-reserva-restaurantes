@@ -66,6 +66,9 @@ public class EfetuaReservaUseCase {
 					reservaDTO.observacao(),
 					reservaDTO.qtdPessoas());
 
+			reserva.setIdRestaurante(restaurante.getId());
+			reserva.setIdUsuario(usuario.getId());
+			
 			//Valida se existem mesas disponíveis nessa restaurante nesse horário. Retorna mesas disponíveis
 			List<MesaEntity> mesasDisponiveisPorHorario = 
 					verificaMesasDisponiveisPorHorario.verifica(restaurante.getId(), reserva.getDataHoraInicio(), reserva.getDataHoraFim());
@@ -88,7 +91,7 @@ public class EfetuaReservaUseCase {
 			}
 			
 			reserva.setMesa(mesaEscolhidaParaReserva.get());
-			
+			reserva.setIdMesa(mesaEscolhidaParaReserva.get().getId());
 			reservaGateway.criarReserva(reserva);
 			
 			

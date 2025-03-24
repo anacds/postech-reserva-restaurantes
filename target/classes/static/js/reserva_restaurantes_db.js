@@ -33,7 +33,7 @@ db.restaurantes.insertOne({
 });
 
  db.restaurantes.insertOne({
-	 _id: "10",
+	 _id: "2",
 	 nome: "Restaurante Exemplo", 
 	 cnpj:"64.113.678/0001-63",
 	 endereco: 
@@ -46,7 +46,7 @@ db.restaurantes.insertOne({
 		  complemento: "152"}, 
 	tipoCozinha: ["Francesa"], 
 	horariosFuncionamento:
-	 [{diaSemana:"Sábado", horarioAbertura: "12:00", horarioFechamento: "22:0"}]})
+	 [{diaSemana:"Sábado", horarioAbertura: "12:00", horarioFechamento: "22:00"}]})
 
 db.mesas.insertOne({
     _id: ObjectId("64f7c16d9b7e4c2a5e4d8765"),

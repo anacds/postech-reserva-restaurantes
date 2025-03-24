@@ -25,6 +25,10 @@ public class AlteraMesaUseCase {
 			Optional<RestauranteEntity> restaurante =  buscaRestaurantePorIdUseCase.buscarRestaurantePorId(mesaDTO.idRestaurante());
 	
 			MesaEntity mesa = new MesaEntity(mesaDTO.numero(), mesaDTO.capacidade(), restaurante.get(), mesaDTO.reservas());
+			
+			mesa.setId(mesaDTO.id());
+			mesa.setIdRestaurante(mesaDTO.idRestaurante());
+			
 			return mesaGateway.alterarMesa(mesa);
 			
 		} catch (Exception e) {

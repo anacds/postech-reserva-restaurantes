@@ -1,5 +1,7 @@
 package com.fiap.postech_reserva_restaurantes.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +23,7 @@ import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
 import com.fiap.postech_reserva_restaurantes.usecases.mesa.AdicionaMesaUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.mesa.AlteraMesaUseCase;
 import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesaPorIdUseCase;
+import com.fiap.postech_reserva_restaurantes.usecases.mesa.BuscarMesasPorRestaurante;
 import com.fiap.postech_reserva_restaurantes.usecases.mesa.DeletaRegistroMesaUseCase;
 
 @RestController
@@ -34,6 +38,9 @@ public class MesaController {
 	private DeletaRegistroMesaUseCase deletaRegistroMesaUseCase;
 	@Autowired
 	private BuscarMesaPorIdUseCase buscarMesaPorIdUseCase;
+	@Autowired
+	private BuscarMesasPorRestaurante buscarMesasPorRestaurante;
+	
 	
 	@PostMapping
 	@Transactional
@@ -49,16 +56,22 @@ public class MesaController {
 		return new ResponseEntity<> (mesa, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	@Transactional
-	public ResponseEntity deletaMesaUseCase(String id){
+	public ResponseEntity deletaMesaUseCase(@PathVariable String id){
 		deletaRegistroMesaUseCase.deletarMesa(id);
 		return ResponseEntity.ok().build();
 	}
 	
 	@GetMapping
-	 public MesaEntity buscarMesaPorId(@RequestParam("id") String id, UriComponentsBuilder uriBuilder){
+	 public MesaEntity buscarMesaPorId(@RequestParam("id") String id){
 		MesaEntity mesa = buscarMesaPorIdUseCase.buscar(id);
-		return mesa;
+		return mesa;	
+	 }
+	
+	@GetMapping("/por-restaurante")
+	 public List<MesaEntity> buscarMesaPorRestaurante(@RequestParam("id_restaurante") String id){
+		List<MesaEntity> mesas = buscarMesasPorRestaurante.buscar(id);
+		return mesas;
 	 }
 }

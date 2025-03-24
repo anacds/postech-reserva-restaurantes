@@ -5,8 +5,11 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+import jakarta.validation.constraints.NotNull;
+
+@Document("reservas")
 public class ReservaEntity {
 
 	@Id
@@ -19,10 +22,18 @@ public class ReservaEntity {
 	@DBRef
 	public final RestauranteEntity restaurante;
 	
+	@Field(name = "mesa_id")
+	private String idMesa;
+	@Field(name = "restaurante_id")
+	private String idRestaurante;
+	@Field(name = "usuario_id")
+	private String idUsuario;
+	
+	@NotNull
 	public final LocalDateTime dataHoraInicio;
+	@NotNull
 	public final LocalDateTime dataHoraFim;
 	
-	public final DiaDaSemana diaDaSemana;
 	public String status, observacao;
 	public final int qtdPessoas;
 	
@@ -38,37 +49,6 @@ public class ReservaEntity {
 		this.status = status;
 		this.observacao = observacao;
 		this.qtdPessoas = qtdPessoas;
-		this.diaDaSemana = getDiaDaSemana();
-	}
-
-	private DiaDaSemana getDiaDaSemana() {
-		DiaDaSemana dia = null;
-		String dayOfWeek = dataHoraInicio.getDayOfWeek().toString();
-		
-		switch (dayOfWeek) {
-			case "MONDAY": {
-				dia = diaDaSemana.SEGUNDA;
-			}
-			case "TUESDAY": {
-				dia = diaDaSemana.TERCA;
-			}
-			case "WEDNESDAY":{
-				dia = diaDaSemana.QUARTA;
-			}
-			case "THURSDAY":{
-				dia = diaDaSemana.QUINTA;
-			}
-			case "FRIDAY":{
-				dia = diaDaSemana.SEXTA;
-			}
-			case "SATURDAY":{
-				dia = diaDaSemana.SABADO;
-			}
-			case "SUNDAY":{
-				dia = diaDaSemana.DOMINGO;
-			}
-		}
-		return dia;
 	}
 
 	public String getId() {
@@ -118,5 +98,32 @@ public class ReservaEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
+	public String getIdRestaurante() {
+		return idRestaurante;
+	}
+
+	public void setIdRestaurante(String idRestaurante) {
+		this.idRestaurante = idRestaurante;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public String getIdMesa() {
+		return idMesa;
+	}
+
+	public void setIdMesa(String idMesa) {
+		this.idMesa = idMesa;
+	}
 }

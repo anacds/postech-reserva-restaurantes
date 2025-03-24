@@ -24,7 +24,7 @@ public class DeletaRegistroMesaUseCase {
 			
 			// Se tiver algum registro associado à essa lista, significa que essa mesa está sendo reservada, 
 			// então não pode ser excluída
-			if (!Objects.isNull(mesa.getReservas())) {
+			if (mesa.getReservas().size() < 0) {
 				System.out.println("Mesa não pode ser excluída.");
 			}else {
 				mesaGateway.excluirMesa(mesa.getId());;
