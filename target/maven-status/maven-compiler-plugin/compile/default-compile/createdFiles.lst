@@ -10,6 +10,7 @@ com\fiap\postech_reserva_restaurantes\gateways\ReservaGateway.class
 com\fiap\postech_reserva_restaurantes\usecases\feedback\FeedbackUseCase.class
 com\fiap\postech_reserva_restaurantes\usecases\usuario\RemoverUsuarioUseCase.class
 com\fiap\postech_reserva_restaurantes\controller\RestauranteController.class
+com\fiap\postech_reserva_restaurantes\controller\FeedbackController.class
 com\fiap\postech_reserva_restaurantes\external\repositories\ComentarioRepository.class
 com\fiap\postech_reserva_restaurantes\usecases\feedback\BuscarComentariosRestauranteUseCase.class
 com\fiap\postech_reserva_restaurantes\usecases\mesa\BuscarMesasPorRestaurante.class
