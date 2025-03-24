@@ -1,9 +1,7 @@
 package com.fiap.postech_reserva_restaurantes.usecases;
 
-import com.fiap.postech_reserva_restaurantes.dto.FeedbackDTO;
 import com.fiap.postech_reserva_restaurantes.entities.*;
 import com.fiap.postech_reserva_restaurantes.interfaces.IFeedbackGateway;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,8 +13,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CalculaMediaNotaUseCaseTest {
@@ -28,61 +26,53 @@ class CalculaMediaNotaUseCaseTest {
     private IFeedbackGateway feedbackGateway;
 
     @Test
-    void testCalculaMediaNota() throws Exception {
+    void testCalculaMediaNota() {
 
         CNPJEntity cnpj = new CNPJEntity("12.345.678/0001-90");
 
 
         EnderecoEntity endereco = new EnderecoEntity(
-                "Rua Fictícia",    // Rua
-                "123",             // Número
-                "Bairro Fictício", // Bairro
-                "Cidade Fictícia", // Cidade
-                "SP",              // Estado
-                "12345-678",       // CEP
-                "Complemento"      // Complemento
+                "Rua Fictícia", "123", "Bairro Fictício", "Cidade Fictícia",
+                "SP", "12345-678", "Complemento"
         );
 
 
         DiaDaSemana diaDaSemana = DiaDaSemana.SEGUNDA;
-        LocalDateTime horarioAbertura = LocalDateTime.of(2025, 3, 22, 8, 0, 0, 0);
-        LocalDateTime horarioFechamento = LocalDateTime.of(2025, 3, 22, 18, 0, 0, 0);
+        LocalDateTime horarioAbertura = LocalDateTime.of(2025, 3, 22, 8, 0);
+        LocalDateTime horarioFechamento = LocalDateTime.of(2025, 3, 22, 18, 0);
 
         HorarioFuncionamentoEntity horario = new HorarioFuncionamentoEntity(diaDaSemana, horarioAbertura, horarioFechamento);
 
 
         RestauranteEntity restaurante = new RestauranteEntity(
-                "Restaurante Fictício",
-                cnpj,
-                endereco,
-                null,
-                Collections.emptyList(),
-                Arrays.asList("Italiana", "Vegetariana"),
-                Arrays.asList(horario),
-                100
+                "Restaurante Fictício", cnpj, endereco, null, Collections.emptyList(),
+                Arrays.asList("Italiana", "Vegetariana"), Arrays.asList(horario), 100
         );
 
 
-        NotaEntity nota1 = new NotaEntity(restaurante, 4.0);
-        NotaEntity nota2 = new NotaEntity(restaurante, 3.0);
+        NotaEntity nota1 = new NotaEntity(restaurante, 5.0);
+        NotaEntity nota2 = new NotaEntity(restaurante, 5.0);
+        NotaEntity nota3 = new NotaEntity(restaurante, 1.0);
         FeedbackEntity feedback1 = new FeedbackEntity(null, null, nota1, null);
         FeedbackEntity feedback2 = new FeedbackEntity(null, null, nota2, null);
-        List<FeedbackEntity> feedbacks = Arrays.asList(feedback1, feedback2);
+        FeedbackEntity feedback3 = new FeedbackEntity(null, null, nota3, null);
+        List<FeedbackEntity> feedbacks = Arrays.asList(feedback1, feedback2, feedback3);
 
 
         when(feedbackGateway.buscarFeedbacksPorRestaurante("restauranteId")).thenReturn(feedbacks);
 
 
-        FeedbackDTO resultado = calculaMediaNotaUseCase.execute("restauranteId");
+        double resultado = calculaMediaNotaUseCase.execute("restauranteId");
 
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonResult = objectMapper.writeValueAsString(resultado);
+        System.out.println("Média calculada: " + resultado);
 
 
-        System.out.println("Resultado JSON: " + jsonResult);
+        double somaNotas = feedbacks.stream()
+                .mapToDouble(f -> f.getNota().getValor())
+                .sum();
+        double mediaEsperada = somaNotas / feedbacks.size();
 
-
-        assertEquals(3.5, resultado.getNota(), 0.1);
+        assertEquals(mediaEsperada, resultado, 0.1);
     }
 }

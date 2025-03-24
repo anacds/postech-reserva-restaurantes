@@ -1,22 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.511 s <<< FAILURE! -- in com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest
-com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest.testBuscarComentariosVazio -- Time elapsed: 1.500 s <<< ERROR!
-java.lang.IllegalArgumentException: Restaurante não pode ser nulo.
-	at com.fiap.postech_reserva_restaurantes.entities.NotaEntity.validarRestaurante(NotaEntity.java:37)
-	at com.fiap.postech_reserva_restaurantes.entities.NotaEntity.<init>(NotaEntity.java:16)
-	at com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest.setUp(BuscarComentariosRestauranteUseCaseTest.java:50)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
-com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest.testBuscarComentarios -- Time elapsed: 0.006 s <<< ERROR!
-java.lang.IllegalArgumentException: Restaurante não pode ser nulo.
-	at com.fiap.postech_reserva_restaurantes.entities.NotaEntity.validarRestaurante(NotaEntity.java:37)
-	at com.fiap.postech_reserva_restaurantes.entities.NotaEntity.<init>(NotaEntity.java:16)
-	at com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest.setUp(BuscarComentariosRestauranteUseCaseTest.java:50)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.135 s -- in com.fiap.postech_reserva_restaurantes.usecases.BuscarComentariosRestauranteUseCaseTest

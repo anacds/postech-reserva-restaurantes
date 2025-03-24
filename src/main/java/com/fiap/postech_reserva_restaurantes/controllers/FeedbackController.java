@@ -41,9 +41,9 @@ public class FeedbackController {
     }
 
     @GetMapping("/media/{idRestaurante}")
-    public ResponseEntity<FeedbackDTO> calcularMediaNota(@PathVariable String idRestaurante) {
-        FeedbackDTO feedbackDTO = calculaMediaNotaUseCase.execute(idRestaurante);
-        return ResponseEntity.ok(feedbackDTO);
+    public ResponseEntity<Double> calcularMediaNota(@PathVariable String idRestaurante) {
+        double mediaNota = calculaMediaNotaUseCase.execute(idRestaurante);
+        return ResponseEntity.ok(mediaNota);
     }
 
     @GetMapping("/comentarios/{idRestaurante}")

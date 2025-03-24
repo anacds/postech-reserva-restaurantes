@@ -61,7 +61,7 @@ public class BuscarComentariosRestauranteUseCaseTest {
         );
         usuario = new UsuarioEntity("user123", "João Silva", new Cpf("12345678900"), LocalDate.of(1990, 5, 20), "(11) 98765-4321", enderecoUsuario);
 
-        comentario1 = new ComentarioEntity(restaurante, usuario, "Excelente restaurante!");
+        comentario1 = new ComentarioEntity(restaurante, usuario, "Excelente restaurante!1");
         comentario2 = new ComentarioEntity(restaurante, usuario, "Comida muito boa, mas o atendimento deixou a desejar.");
 
         FeedbackEntity feedback1 = new FeedbackEntity(usuario, restaurante, null, comentario1);
@@ -78,7 +78,7 @@ public class BuscarComentariosRestauranteUseCaseTest {
         List<String> comentarios = buscarComentariosRestauranteUseCase.execute("restauranteId");
 
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        /*ObjectMapper objectMapper = new ObjectMapper();
         String jsonResult = objectMapper.writeValueAsString(comentarios);
 
 
@@ -86,7 +86,20 @@ public class BuscarComentariosRestauranteUseCaseTest {
 
         assertEquals(2, comentarios.size());
         assertTrue(comentarios.contains("Excelente restaurante!"));
-        assertTrue(comentarios.contains("Comida muito boa, mas o atendimento deixou a desejar."));
+        assertTrue(comentarios.contains("Comida muito boa, mas o atendimento deixou a desejar."));*/
+
+
+        List<String> comentariosEsperados = Arrays.asList(
+                comentario1.getTexto(),
+                comentario2.getTexto()
+        );
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResult = objectMapper.writeValueAsString(comentarios);
+        System.out.println("Comentarios JSON: " + jsonResult);
+
+        assertEquals(comentariosEsperados.size(), comentarios.size(), "O número de comentários não corresponde ao esperado");
+        assertTrue(comentarios.containsAll(comentariosEsperados), "Os comentários retornados não correspondem aos esperados");
     }
 
     @Test

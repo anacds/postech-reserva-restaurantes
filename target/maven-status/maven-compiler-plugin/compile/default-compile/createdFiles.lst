@@ -10,6 +10,7 @@ com\fiap\postech_reserva_restaurantes\external\repositories\RestauranteRepositor
 com\fiap\postech_reserva_restaurantes\valueobjects\Cpf.class
 com\fiap\postech_reserva_restaurantes\external\repositories\ComentarioRepository.class
 com\fiap\postech_reserva_restaurantes\entities\MesaEntity.class
+com\fiap\postech_reserva_restaurantes\entities\DiaDaSemana.class
 com\fiap\postech_reserva_restaurantes\controllers\FeedbackController.class
 com\fiap\postech_reserva_restaurantes\gateways\FeedbackGateway.class
 com\fiap\postech_reserva_restaurantes\entities\RestauranteEntity.class
