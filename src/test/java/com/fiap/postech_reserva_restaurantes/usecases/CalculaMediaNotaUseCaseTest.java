@@ -2,6 +2,7 @@ package com.fiap.postech_reserva_restaurantes.usecases;
 
 import com.fiap.postech_reserva_restaurantes.entities.*;
 import com.fiap.postech_reserva_restaurantes.interfaces.IFeedbackGateway;
+import com.fiap.postech_reserva_restaurantes.usecases.feedback.CalculaMediaNotaUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -37,9 +38,9 @@ class CalculaMediaNotaUseCaseTest {
         );
 
 
-        DiaDaSemana diaDaSemana = DiaDaSemana.SEGUNDA;
-        LocalDateTime horarioAbertura = LocalDateTime.of(2025, 3, 22, 8, 0);
-        LocalDateTime horarioFechamento = LocalDateTime.of(2025, 3, 22, 18, 0);
+        String diaDaSemana = "SEGUNDA";
+        String horarioAbertura = "08:00";
+        String horarioFechamento = "18:00";
 
         HorarioFuncionamentoEntity horario = new HorarioFuncionamentoEntity(diaDaSemana, horarioAbertura, horarioFechamento);
 

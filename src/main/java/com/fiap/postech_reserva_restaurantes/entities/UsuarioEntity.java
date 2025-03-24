@@ -12,12 +12,12 @@ public class UsuarioEntity extends PessoaEntity {
     private final EnderecoEntity endereco;
 
     public UsuarioEntity(
-            String id,
-            String nome,
-            Cpf cpf,
-            LocalDate dataNascimento,
-            String telefone,
-            EnderecoEntity endereco
+        String id,
+        String nome,
+        Cpf cpf,
+        LocalDate dataNascimento,
+        String telefone,
+        EnderecoEntity endereco
     ) {
         super(nome, cpf, dataNascimento);
         this.id = Objects.requireNonNull(id, "ID não pode ser nulo.");

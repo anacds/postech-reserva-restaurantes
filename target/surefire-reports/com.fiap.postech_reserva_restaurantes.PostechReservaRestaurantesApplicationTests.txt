@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fiap.postech_reserva_restaurantes.PostechReservaRestaurantesApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.725 s -- in com.fiap.postech_reserva_restaurantes.PostechReservaRestaurantesApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.957 s -- in com.fiap.postech_reserva_restaurantes.PostechReservaRestaurantesApplicationTests
