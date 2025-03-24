@@ -22,6 +22,7 @@ public class RestauranteEntity {
     private List<HorarioFuncionamentoEntity> horariosFuncionamento;
     private int capacidade;
 
+
     public RestauranteEntity() {
     }
 

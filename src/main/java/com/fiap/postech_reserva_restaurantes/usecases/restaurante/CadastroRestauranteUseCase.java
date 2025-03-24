@@ -25,6 +25,7 @@ public class CadastroRestauranteUseCase {
     @Autowired
     public BuscarComentariosRestauranteUseCase buscarComentariosRestauranteUseCase;
 
+
     public RestauranteEntity cadastrarRestaurante(RestauranteDTO restauranteDTO) {
         if (restauranteDTO == null) {
             throw new IllegalArgumentException("Dados do restaurante não podem ser nulos.");
