@@ -15,11 +15,8 @@ public class ReservaEntity {
 	@Id
 	private String id;
 	
-	@DBRef
 	public MesaEntity mesa;
-	@DBRef
 	public final UsuarioEntity usuario;
-	@DBRef
 	public final RestauranteEntity restaurante;
 	
 	@Field(name = "mesa_id")

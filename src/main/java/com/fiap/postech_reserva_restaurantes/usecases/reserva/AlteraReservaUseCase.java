@@ -38,7 +38,7 @@ public class AlteraReservaUseCase {
 			
 			Optional<UsuarioEntity> usuario = buscarUsuarioUseCase.buscarPorId(reservaDTO.idUsuario());
 			
-			Optional<RestauranteEntity> restaurante =  buscaRestaurantePorIdUseCase.buscarRestaurantePorId(reservaDTO.idUsuario());
+			Optional<RestauranteEntity> restaurante =  buscaRestaurantePorIdUseCase.buscarRestaurantePorId(reservaDTO.idRestaurante());
 			
 			ReservaEntity reserva = new ReservaEntity(
 					mesa,
@@ -49,6 +49,8 @@ public class AlteraReservaUseCase {
 					reservaDTO.status(),
 					reservaDTO.observacao(), 
 					reservaDTO.qtdPessoas());
+			
+			reserva.setId(reservaDTO.id());
 			
 			return reservaGateway.alterarReserva(reserva);
 		} catch (Exception e) {

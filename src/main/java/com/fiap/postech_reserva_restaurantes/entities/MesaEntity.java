@@ -3,7 +3,6 @@ package com.fiap.postech_reserva_restaurantes.entities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +18,6 @@ public class MesaEntity {
 	@Field(name = "restaurante_id")
 	private String idRestaurante;
 	
-	@DBRef
 	public final RestauranteEntity restaurante;
 	public final List<ReservaEntity> reservas;
 	

@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fiap.postech_reserva_restaurantes.entities.MesaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.ReservaEntity;
 import com.fiap.postech_reserva_restaurantes.entities.RestauranteEntity;
 import com.fiap.postech_reserva_restaurantes.gateways.MesaGateway;
+import com.fiap.postech_reserva_restaurantes.usecases.restaurante.BuscaRestaurantePorIdUseCase;
 
 @Service
 public class VerificaMesasDisponiveisPorHorario {
@@ -23,30 +23,54 @@ public class VerificaMesasDisponiveisPorHorario {
 	@Autowired
 	private BuscarMesasPorRestaurante buscarMesasPorRestaurante;
 	
+	@Autowired
+	private BuscaRestaurantePorIdUseCase buscarRestaurantePorIdUseCase;
+	
 	public List<MesaEntity> verifica(String idRestaurante, LocalDateTime dataInicio, LocalDateTime dataFim) {
 		
-		RestauranteEntity restaurante = new RestauranteEntity();
+		Optional<RestauranteEntity> restaurante = buscarRestaurantePorIdUseCase.buscarRestaurantePorId(idRestaurante);
 		
-		List<MesaEntity> mesasDesseRestaurante = buscarMesasPorRestaurante.buscar(restaurante.getId());
+		List<MesaEntity> mesasDesseRestaurante = buscarMesasPorRestaurante.buscar(restaurante.get().getId());
 		
 		List<MesaEntity> mesasDisponiveisHorario = new ArrayList<MesaEntity>();
 		
 		for(MesaEntity mesa : mesasDesseRestaurante) {
 			List<ReservaEntity> reservasDaMesa = mesa.getReservas();
 			
-			List<ReservaEntity> reservasNesseHorario = reservasDaMesa.stream()
-				.filter(x ->
-						x.getDataHoraFim().isBefore(dataInicio) &&
-//						x.getDataHoraInicio().isBefore(null) &&
-						x.getDataHoraFim().isBefore(null)).collect(Collectors.toList());
-			
-			if (Objects.isNull(reservasNesseHorario)) {
+			if (reservasDaMesa.size() == 0) {
 				mesasDisponiveisHorario.add(mesa);
 			}
-			
+			else {
+				List<ReservaEntity> reservasNesseHorario = reservasDaMesa.stream()
+					.filter(x -> validaDisponibilidade(dataInicio, dataFim, x.getDataHoraInicio(), x.getDataHoraFim())).collect(Collectors.toList());
+				
+				if (Objects.isNull(reservasNesseHorario)) {
+					mesasDisponiveisHorario.add(mesa);
+				}
+			}
 		}
 		
 		return mesasDisponiveisHorario;
 		
 	}
+	
+	private boolean validaDisponibilidade(LocalDateTime horarioInicioDesejado, LocalDateTime horarioFimDesejado, 
+			LocalDateTime horarioInicioExistente, LocalDateTime horarioFimExistente
+			) {
+		if (horarioInicioExistente.isBefore(horarioInicioDesejado) ) {
+			if (horarioFimExistente.isBefore(horarioInicioDesejado)) {
+				return true;
+			} 
+		}
+			
+		if (horarioInicioExistente.isAfter(horarioInicioDesejado)) {
+			if (horarioFimDesejado.isBefore(horarioInicioExistente)) {
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
+	
 }
