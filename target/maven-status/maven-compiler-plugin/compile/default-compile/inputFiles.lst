@@ -44,6 +44,7 @@ E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\pos
 E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\interfaces\IUsuarioGateway.java
 E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\PostechReservaRestaurantesApplication.java
 E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\usecases\feedback\BuscarComentariosRestauranteUseCase.java
+E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\usecases\feedback\BuscarFeedbackPorIdUseCase.java
 E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\usecases\feedback\CalculaMediaNotaUseCase.java
 E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\usecases\feedback\FeedbackUseCase.java
 E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\main\java\com\fiap\postech_reserva_restaurantes\usecases\mesa\AdicionaMesaUseCase.java

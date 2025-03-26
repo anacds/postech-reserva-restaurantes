@@ -3,16 +3,21 @@ package com.fiap.postech_reserva_restaurantes.entities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+@Document(collection = "mesas")
 public class MesaEntity {
 	
 	@Id
 	private String id;
 	public final Integer numero, capacidade;
+
+	@Field(name = "restaurante_id")
+	private String idRestaurante;
+	
 	public final RestauranteEntity restaurante;
 	public final List<ReservaEntity> reservas;
 	
@@ -53,6 +58,14 @@ public class MesaEntity {
 	public List<ReservaEntity> getReservas() {
 		return reservas;
 	}
+	
+	public String getIdRestaurante() {
+		return idRestaurante;
+	}
+
+	public void setIdRestaurante(String idRestaurante) {
+		this.idRestaurante = idRestaurante;
+	}
 
 	private void validaNumero(Integer valor) throws IllegalArgumentException {
 		if (Objects.isNull(valor)) {
@@ -62,6 +75,9 @@ public class MesaEntity {
 			throw new IllegalArgumentException("Dados inválidos");
 		}
 	}
-	
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 }

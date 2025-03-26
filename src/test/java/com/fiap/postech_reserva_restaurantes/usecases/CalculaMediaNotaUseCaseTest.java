@@ -46,7 +46,7 @@ class CalculaMediaNotaUseCaseTest {
 
 
         RestauranteEntity restaurante = new RestauranteEntity(
-                "Restaurante Fictício", cnpj, endereco, null, Collections.emptyList(),
+                "Restaurante Fictício", cnpj, endereco, 0.0, Collections.emptyList(),
                 Arrays.asList("Italiana", "Vegetariana"), Arrays.asList(horario), 100
         );
 

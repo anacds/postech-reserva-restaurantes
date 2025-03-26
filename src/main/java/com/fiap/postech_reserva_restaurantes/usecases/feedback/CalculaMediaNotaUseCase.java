@@ -19,21 +19,6 @@ public class CalculaMediaNotaUseCase {
         this.feedbackGateway = feedbackGateway;
     }
 
-    /*public FeedbackDTO execute(String idRestaurante) {
-        List<FeedbackEntity> feedbackEntities = feedbackGateway.buscarFeedbacksPorRestaurante(idRestaurante);
-
-        if (feedbackEntities.isEmpty()) {
-            throw new IllegalArgumentException("Nenhum feedback encontrado para este restaurante.");
-        }
-
-        double somaNotas = 0;
-        for (FeedbackEntity feedback : feedbackEntities) {
-            somaNotas += feedback.getNota().getValor();
-        }
-
-        double media = somaNotas / feedbackEntities.size();
-        return new FeedbackDTO(null, null, idRestaurante, media, null);
-    }*/
 
     public double execute(String idRestaurante) {
         List<FeedbackEntity> feedbackEntities = feedbackGateway.buscarFeedbacksPorRestaurante(idRestaurante);

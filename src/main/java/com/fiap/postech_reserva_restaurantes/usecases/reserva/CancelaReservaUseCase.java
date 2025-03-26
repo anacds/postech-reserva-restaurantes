@@ -26,7 +26,7 @@ public class CancelaReservaUseCase {
 		
 		reserva.setStatus(Status.CANCELADA);
 		
-		ReservaDTO reservaDTO = new ReservaDTO(reserva.getId(), reserva.getUsuario().getId(), reserva.getRestaurante().getId(), 
+		ReservaDTO reservaDTO = new ReservaDTO(reserva.getId(), reserva.getMesa().getId(), reserva.getUsuario().getId(), reserva.getRestaurante().getId(), 
 				reserva.getDataHoraInicio(), reserva.getDataHoraFim(), reserva.getStatus(), reserva.getObservacao(), reserva.getQtdPessoas());
 		
 		ReservaEntity reservaAlterada = alteraReservaUseCase.alterar(reservaDTO);

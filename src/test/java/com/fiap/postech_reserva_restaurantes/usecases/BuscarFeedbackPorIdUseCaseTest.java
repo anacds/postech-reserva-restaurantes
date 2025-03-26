@@ -41,7 +41,7 @@ class BuscarFeedbackPorIdUseCaseTest {
                 "Restaurante XPTO",
                 cnpj,
                 endereco,
-                null,
+                0.0,
                 null,
                 Arrays.asList("Italiana", "Vegetariana"),
                 Arrays.asList(horario),

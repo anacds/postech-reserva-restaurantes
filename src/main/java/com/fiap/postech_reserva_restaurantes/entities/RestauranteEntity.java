@@ -15,18 +15,19 @@ public class RestauranteEntity {
     private String id;
     private CNPJEntity cnpj;
     private String nome;
-    private NotaEntity nota;
+    private double nota;
     private List<ComentarioEntity> comentarios;
     private EnderecoEntity endereco;
     private List<String> tipoCozinha;
     private List<HorarioFuncionamentoEntity> horariosFuncionamento;
     private int capacidade;
-    
-    public RestauranteEntity() {
-	}
 
-	public RestauranteEntity(String nome, CNPJEntity cnpj, EnderecoEntity endereco,
-                             NotaEntity nota, List<ComentarioEntity> comentarios,
+
+    public RestauranteEntity() {
+    }
+
+    public RestauranteEntity(String nome, CNPJEntity cnpj, EnderecoEntity endereco,
+                             double nota, List<ComentarioEntity> comentarios,
                              List<String> tipoCozinha, List<HorarioFuncionamentoEntity> horariosFuncionamento, int capacidade) {
         super();
         validar(cnpj, nome, tipoCozinha, horariosFuncionamento, capacidade);
@@ -44,7 +45,7 @@ public class RestauranteEntity {
         return id;
     }
 
-    public void setNota(NotaEntity nota) { this.nota = nota; }
+    public void setNota(Double nota) { this.nota = nota; }
 
     public CNPJEntity getCnpj() {
         return cnpj;
@@ -54,7 +55,7 @@ public class RestauranteEntity {
         return nome;
     }
 
-    public NotaEntity getNota() {
+    public double getNota() {
         return nota;
     }
 

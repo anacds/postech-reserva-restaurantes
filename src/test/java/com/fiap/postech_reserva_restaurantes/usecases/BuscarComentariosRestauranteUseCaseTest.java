@@ -56,7 +56,7 @@ public class BuscarComentariosRestauranteUseCaseTest {
                 "Restaurante XYZ",
                 cnpj,
                 enderecoRestaurante,
-                null,
+                0.0,
                 comentarios,
                 Arrays.asList("Italiana", "Japonesa"),
                 Arrays.asList(horario),
@@ -65,7 +65,7 @@ public class BuscarComentariosRestauranteUseCaseTest {
 
         NotaEntity nota = new NotaEntity(restaurante, 4.5);
 
-        restaurante.setNota(nota);
+        restaurante.setNota(nota.getValor());
 
         EnderecoEntity enderecoUsuario = new EnderecoEntity(
                 "Avenida Exemplo", "456", "Bairro Exemplo", "Cidade", "SP", "98765-432", "Complemento"

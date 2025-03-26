@@ -7,6 +7,7 @@ com\fiap\postech_reserva_restaurantes\controller\UsuarioController.class
 com\fiap\postech_reserva_restaurantes\entities\EnderecoEntity.class
 com\fiap\postech_reserva_restaurantes\valueobjects\Cpf.class
 com\fiap\postech_reserva_restaurantes\gateways\ReservaGateway.class
+com\fiap\postech_reserva_restaurantes\usecases\feedback\BuscarFeedbackPorIdUseCase.class
 com\fiap\postech_reserva_restaurantes\usecases\feedback\FeedbackUseCase.class
 com\fiap\postech_reserva_restaurantes\usecases\usuario\RemoverUsuarioUseCase.class
 com\fiap\postech_reserva_restaurantes\controller\RestauranteController.class
@@ -41,7 +42,6 @@ com\fiap\postech_reserva_restaurantes\PostechReservaRestaurantesApplication.clas
 com\fiap\postech_reserva_restaurantes\external\repositories\ReservaRepository.class
 com\fiap\postech_reserva_restaurantes\entities\PessoaEntity.class
 com\fiap\postech_reserva_restaurantes\usecases\usuario\ListarUsuariosUseCase.class
-com\fiap\postech_reserva_restaurantes\usecases\restaurante\BuscaRestaurantesPorBairroUseCase.class
 com\fiap\postech_reserva_restaurantes\external\repositories\UsuarioRepository.class
 com\fiap\postech_reserva_restaurantes\interfaces\IRestauranteGateway.class
 com\fiap\postech_reserva_restaurantes\entities\UsuarioEntity.class
@@ -54,7 +54,6 @@ com\fiap\postech_reserva_restaurantes\usecases\reserva\EfetuaReservaUseCase.clas
 com\fiap\postech_reserva_restaurantes\usecases\reserva\BuscaReservasPorRestauranteUseCase.class
 com\fiap\postech_reserva_restaurantes\usecases\restaurante\DelecaoRestauranteUseCase.class
 com\fiap\postech_reserva_restaurantes\gateways\UsuarioGateway.class
-com\fiap\postech_reserva_restaurantes\usecases\reserva\AlteraReservaUseCase.class
 com\fiap\postech_reserva_restaurantes\entities\MesaEntity.class
 com\fiap\postech_reserva_restaurantes\entities\DiaDaSemana.class
 com\fiap\postech_reserva_restaurantes\usecases\feedback\CalculaMediaNotaUseCase.class

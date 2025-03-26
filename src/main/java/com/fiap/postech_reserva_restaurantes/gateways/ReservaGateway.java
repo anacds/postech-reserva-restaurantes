@@ -41,7 +41,8 @@ public class ReservaGateway implements IReservaGateway{
 	}
 
 	public ReservaEntity alterarReserva(ReservaEntity reserva) {
-		return reservaRepository.save(reserva);
+		ReservaEntity reservaEntity = reservaRepository.save(reserva);
+		return reservaEntity;
 	}
 
 	public void excluirReserva(String idReserva) {

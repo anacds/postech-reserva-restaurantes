@@ -1,4 +1,5 @@
 com\fiap\postech_reserva_restaurantes\PostechReservaRestaurantesApplicationTests.class
 com\fiap\postech_reserva_restaurantes\usecases\CalculaMediaNotaUseCaseTest.class
+com\fiap\postech_reserva_restaurantes\usecases\BuscarFeedbackPorIdUseCaseTest.class
 com\fiap\postech_reserva_restaurantes\usecases\FeedbackUseCaseTest.class
 com\fiap\postech_reserva_restaurantes\usecases\BuscarComentariosRestauranteUseCaseTest.class
