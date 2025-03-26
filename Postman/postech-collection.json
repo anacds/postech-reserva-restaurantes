@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "3c391cda-76da-4ddf-9448-10b4657c702b",
+		"name": "Reserva de Restaurante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40913202",
+		"_collection_link": "https://www.postman.com/docking-module-meteorologist-80812792/workspace/postech-reserva-de-restaurantes/collection/40913202-3c391cda-76da-4ddf-9448-10b4657c702b?action=share&source=collection_link&creator=40913202"
+	},
+	"item": [
+		{
+			"name": "Mesa",
+			"item": [
+				{
+					"name": "Delete Mesa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/mesa/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mesa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Mesa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"numero\":\"12\",\r\n    \"capacidade\":\"4\",\r\n    \"idRestaurante\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/mesa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mesa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mesa By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/mesa/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mesa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mesa By Restaurante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/mesa/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mesa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Mesa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"67e16652558716263083f8d2\",\r\n    \"numero\":\"34\",\r\n    \"capacidade\":\"4\",\r\n    \"idRestaurante\":\"2\"\r\n}           ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/mesa/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mesa",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reserva",
+			"item": [
+				{
+					"name": "Efetua Reserva",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    \r\n    \r\n    {\r\n        \"idRestaurante\":\"2\",\r\n        \"idUsuario\":\"00eb7a5d-0fd1-41e7-86ae-94b23b7ca1e1\",\r\n        \"dataHoraInicio\": \"2025-03-25T21:30:00\",\r\n        \"dataHoraFim\":\"2025-03-25T22:00:00\",\r\n        \"status\":\"PENDENTE\",\r\n        \"observacao\":\"observacao\",\r\n        \"qtdPessoas\":5\r\n    }   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/reserva",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procura Reserva Por Restaurante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/reserva/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reserva",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procura Reserva Por Usuário",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/reserva/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reserva",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procura Reserva Por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/reserva/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reserva",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar Reserva",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/reserva/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reserva",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Reserva",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    \r\n    \r\n    {\r\n        \"id\":\"67e33a7400a1e90b10c4ac5d\",\r\n        \"idMesa\":\"111\",\r\n        \"idRestaurante\":\"2\",\r\n        \"idUsuario\":\"4e070419-0099-44c0-81f7-ac210a499a21\",\r\n        \"dataHoraInicio\": \"2025-03-24T18:30:00\",\r\n        \"dataHoraFim\":\"2025-03-24T20:00:00\",\r\n        \"status\":\"CONFIRMADO\",\r\n        \"observacao\":\"observacao\",\r\n        \"qtdPessoas\":5\r\n    }   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/reserva/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"reserva",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Criar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Lucas Andrade2\",\r\n  \"cpf\": {\r\n    \"cpf\": \"39053344765\"\r\n  },\r\n  \"dataNascimento\": \"1995-03-25\",\r\n  \"telefone\": \"11999999999\",\r\n  \"endereco\": {\r\n    \"rua\": \"Rua das Flores\",\r\n    \"numero\": \"100\",\r\n    \"bairro\": \"Centro\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"estado\": \"SP\",\r\n    \"cep\": \"12345-678\",\r\n    \"complemento\": \"Apto 202\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/usuarios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todos os Usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Usuário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurantes",
+			"item": [
+				{
+					"name": "Cadastrar Restaurante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Restaurante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Restaurantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Restaurantes Por Nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Restaurantes Por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Restaurantes Por Bairro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Restaurantes Por Tipo Cozinha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Restaurante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/restaurante",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurante"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feedbacks",
+			"item": [
+				{
+					"name": "Cadastrar Feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuarioId\": \"1\",\r\n    \"restauranteId\": \"67890\",\r\n    \"nota\": 4.5,\r\n    \"comentario\": \"Excelente comida, atendimento ótimo!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/feedbacks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feedbacks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Média Notas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/feedbacks/media/{restauranteId}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feedbacks",
+								"media",
+								"{restauranteId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Comentários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/feedbacks/comentarios/{restauranteId}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feedbacks",
+								"comentarios",
+								"{restauranteId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Feedback Por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/feedbacks/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feedbacks",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
