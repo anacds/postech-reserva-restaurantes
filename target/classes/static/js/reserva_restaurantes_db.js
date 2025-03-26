@@ -47,7 +47,7 @@ db.restaurantes.insertOne({
 	tipoCozinha: ["Francesa"], 
 	horariosFuncionamento:
 	 [{diaSemana:"Sábado", horarioAbertura: "12:00", horarioFechamento: "22:00"}]})
-	 
+	 	
 db.mesas.insertOne({
     _id: ObjectId("64f7c16d9b7e4c2a5e4d8765"),
     numero: 1,
