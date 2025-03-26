@@ -1,4 +1,4 @@
-/*package com.fiap.postech_reserva_restaurantes.usecases;
+package com.fiap.postech_reserva_restaurantes.usecases;
 
 import com.fiap.postech_reserva_restaurantes.entities.*;
 import com.fiap.postech_reserva_restaurantes.interfaces.IFeedbackGateway;
@@ -35,34 +35,45 @@ public class BuscarComentariosRestauranteUseCaseTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
+
         EnderecoEntity enderecoRestaurante = new EnderecoEntity(
-                "Rua Exemplo",  // rua
-                "123",          // numero
-                "Bairro Exemplo",  // bairro
-                "Cidade",       // cidade
-                "SP",           // estado
-                "12345-678",    // cep
-                "Complemento 1" // complemento
+                "Rua Exemplo", "123", "Bairro Exemplo", "Cidade", "SP", "12345-678", "Complemento 1"
         );
 
+
         CNPJEntity cnpj = new CNPJEntity("12345678000195");
+
+
         List<ComentarioEntity> comentarios = Arrays.asList(
                 new ComentarioEntity(null, null, "Excelente restaurante!"),
                 new ComentarioEntity(null, null, "Comida boa")
         );
 
-        restaurante = new RestauranteEntity("Restaurante XYZ", cnpj, enderecoRestaurante, null, comentarios, null, null, 50);
+
+        HorarioFuncionamentoEntity horario = new HorarioFuncionamentoEntity("SEGUNDA", "08:00", "18:00");
+
+        restaurante = new RestauranteEntity(
+                "Restaurante XYZ",
+                cnpj,
+                enderecoRestaurante,
+                0.0,
+                comentarios,
+                Arrays.asList("Italiana", "Japonesa"),
+                Arrays.asList(horario),
+                50
+        );
 
         NotaEntity nota = new NotaEntity(restaurante, 4.5);
 
-        restaurante = new RestauranteEntity("Restaurante XYZ", cnpj, enderecoRestaurante, nota, comentarios, null, null, 50);
+        restaurante.setNota(nota.getValor());
 
         EnderecoEntity enderecoUsuario = new EnderecoEntity(
                 "Avenida Exemplo", "456", "Bairro Exemplo", "Cidade", "SP", "98765-432", "Complemento"
         );
-        usuario = new UsuarioEntity("user123", "João Silva", new Cpf("12345678900"), LocalDate.of(1990, 5, 20), "(11) 98765-4321", enderecoUsuario);
+        usuario = new UsuarioEntity("user123", "João Silva", new Cpf("12345678900"), LocalDate.of(1990, 5, 20),
+                "(11) 98765-4321", enderecoUsuario);
 
-        comentario1 = new ComentarioEntity(restaurante, usuario, "Excelente restaurante!");
+        comentario1 = new ComentarioEntity(restaurante, usuario, "Excelente restaurante!1");
         comentario2 = new ComentarioEntity(restaurante, usuario, "Comida muito boa, mas o atendimento deixou a desejar.");
 
         FeedbackEntity feedback1 = new FeedbackEntity(usuario, restaurante, null, comentario1);
@@ -73,21 +84,24 @@ public class BuscarComentariosRestauranteUseCaseTest {
         when(feedbackGateway.buscarFeedbacksPorRestaurante("restauranteId")).thenReturn(feedbacks);
     }
 
+
+
     @Test
     void testBuscarComentarios() throws Exception {
 
         List<String> comentarios = buscarComentariosRestauranteUseCase.execute("restauranteId");
 
+        List<String> comentariosEsperados = Arrays.asList(
+                comentario1.getTexto(),
+                comentario2.getTexto()
+        );
 
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonResult = objectMapper.writeValueAsString(comentarios);
-
-
         System.out.println("Comentarios JSON: " + jsonResult);
 
-        assertEquals(2, comentarios.size());
-        assertTrue(comentarios.contains("Excelente restaurante!"));
-        assertTrue(comentarios.contains("Comida muito boa, mas o atendimento deixou a desejar."));
+        assertEquals(comentariosEsperados.size(), comentarios.size(), "O número de comentários não corresponde ao esperado");
+        assertTrue(comentarios.containsAll(comentariosEsperados), "Os comentários retornados não correspondem aos esperados");
     }
 
     @Test
@@ -100,11 +114,9 @@ public class BuscarComentariosRestauranteUseCaseTest {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonResult = objectMapper.writeValueAsString(comentarios);
-
-
         System.out.println("Comentarios JSON: " + jsonResult);
 
-        assertTrue(comentarios.isEmpty());
+
+        assertTrue(comentarios.isEmpty(), "A lista de comentários não deve conter nenhum item");
     }
 }
-*/

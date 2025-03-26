@@ -32,6 +32,22 @@ db.restaurantes.insertOne({
     capacidade: 50
 });
 
+ db.restaurantes.insertOne({
+	 _id: "2",
+	 nome: "Restaurante Exemplo", 
+	 cnpj:"64.113.678/0001-63",
+	 endereco: 
+		  {rua: "Rua Portugal", 
+		  cidade: "São Paulo", 
+		  estado: "SP", 
+		  bairro: "Rincão",
+		  cep: "93348-520", 
+		  numero: 15,
+		  complemento: "152"}, 
+	tipoCozinha: ["Francesa"], 
+	horariosFuncionamento:
+	 [{diaSemana:"Sábado", horarioAbertura: "12:00", horarioFechamento: "22:00"}]})
+
 db.mesas.insertOne({
     _id: ObjectId("64f7c16d9b7e4c2a5e4d8765"),
     restaurante_id: ObjectId("64f7c4d19b7e4c2a5e4d8769"),

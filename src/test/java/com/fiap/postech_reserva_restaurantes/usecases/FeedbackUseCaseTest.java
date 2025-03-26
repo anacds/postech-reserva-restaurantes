@@ -9,6 +9,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
+
+import java.util.Arrays;
+
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,13 +38,21 @@ public class FeedbackUseCaseTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
+
         usuario = mock(UsuarioEntity.class);
         restaurante = mock(RestauranteEntity.class);
         nota = mock(NotaEntity.class);
         comentario = mock(ComentarioEntity.class);
 
-        when(usuarioRepository.findById("usuarioId")).thenReturn(java.util.Optional.of(usuario));
+
+        HorarioFuncionamentoEntity horario = new HorarioFuncionamentoEntity("SEGUNDA", "08:00", "18:00");
+
+
         when(restauranteRepository.findById("restauranteId")).thenReturn(java.util.Optional.of(restaurante));
+        when(restaurante.getHorariosFuncionamento()).thenReturn(Arrays.asList(horario));
+
+
+        when(usuarioRepository.findById("usuarioId")).thenReturn(java.util.Optional.of(usuario));
         when(feedbackRepository.save(any(FeedbackEntity.class))).thenReturn(new FeedbackEntity(usuario, restaurante, nota, comentario));
     }
 
@@ -50,10 +61,8 @@ public class FeedbackUseCaseTest {
 
         FeedbackEntity feedback = feedbackUseCase.criarFeedback("usuarioId", "restauranteId", 4.5, "Excelente restaurante!");
 
-
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonResult = objectMapper.writeValueAsString(feedback);
-
 
         System.out.println("Feedback JSON: " + jsonResult);
 

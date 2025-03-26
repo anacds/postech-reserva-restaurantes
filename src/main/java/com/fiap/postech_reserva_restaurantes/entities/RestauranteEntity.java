@@ -45,6 +45,8 @@ public class RestauranteEntity {
         return id;
     }
 
+    public void setNota(Double nota) { this.nota = nota; }
+
     public CNPJEntity getCnpj() {
         return cnpj;
     }
