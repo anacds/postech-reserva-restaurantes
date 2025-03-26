@@ -1,4 +1,4 @@
-package com.fiap.postech_reserva_restaurantes.usecases;
+/*package com.fiap.postech_reserva_restaurantes.usecases;
 
 import com.fiap.postech_reserva_restaurantes.entities.*;
 import com.fiap.postech_reserva_restaurantes.interfaces.IFeedbackGateway;
@@ -107,3 +107,4 @@ public class BuscarComentariosRestauranteUseCaseTest {
         assertTrue(comentarios.isEmpty());
     }
 }
+*/

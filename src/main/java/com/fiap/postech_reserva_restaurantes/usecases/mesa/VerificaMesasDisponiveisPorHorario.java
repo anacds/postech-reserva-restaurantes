@@ -57,6 +57,11 @@ public class VerificaMesasDisponiveisPorHorario {
 	private boolean validaDisponibilidade(LocalDateTime horarioInicioDesejado, LocalDateTime horarioFimDesejado, 
 			LocalDateTime horarioInicioExistente, LocalDateTime horarioFimExistente
 			) {
+		
+		if(!horarioInicioExistente.getMonth().equals(horarioInicioDesejado.getMonth())) {
+			return true;
+		}
+	
 		if (horarioInicioExistente.isBefore(horarioInicioDesejado) ) {
 			if (horarioFimExistente.isBefore(horarioInicioDesejado)) {
 				return true;

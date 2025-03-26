@@ -5,6 +5,9 @@ import com.fiap.postech_reserva_restaurantes.valueobjects.Cpf;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("usuarios")
 public class UsuarioEntity extends PessoaEntity {
 
     private final String id;
