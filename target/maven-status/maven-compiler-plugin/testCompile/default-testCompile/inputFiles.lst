@@ -1,5 +1,11 @@
-E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\PostechReservaRestaurantesApplicationTests.java
-E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\BuscarComentariosRestauranteUseCaseTest.java
-E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\BuscarFeedbackPorIdUseCaseTest.java
-E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\CalculaMediaNotaUseCaseTest.java
-E:\Rafael\New folder (2)\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\FeedbackUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\BuscarComentariosRestauranteUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\usuario\CriarUsuarioUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\usuario\BuscarUsuarioUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\usuario\AtualizarUsuarioUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\controller\UsuarioControllerIntegrationTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\PostechReservaRestaurantesApplicationTests.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\usuario\RemoverUsuarioUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\CalculaMediaNotaUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\gateways\UsuarioGatewayTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\BuscarFeedbackPorIdUseCaseTest.java
+C:\Users\Lucas\OneDrive\Desktop\WorkFlow_POS_TECH\deploy_local\postech-reserva-restaurantes\src\test\java\com\fiap\postech_reserva_restaurantes\usecases\FeedbackUseCaseTest.java
